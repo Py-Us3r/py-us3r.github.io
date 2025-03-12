@@ -10,6 +10,7 @@ header:
   icon: /img2/images/hackthebox.webp
 categories:
   - hackthebox
+  - Linux
   - Very Easy
 tags:
   - Amazon S3

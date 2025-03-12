@@ -10,9 +10,10 @@ header:
   icon: /img2/images/hackthebox.webp
 categories:
   - hackthebox
+  - Windows
   - Very Easy
 tags:
-  - smb
+  - SMB
 ---
 
 ![](/img2/Pasted%20image%2020250309174721.png)

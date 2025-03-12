@@ -10,9 +10,10 @@ header:
   icon: /img2/images/hackthebox.webp
 categories:
   - hackthebox
+  - Linux
   - Very Easy
 tags:
-  - ftp
+  - FTP
 ---
 
 ![](/img2/Pasted%20image%2020250310120957.png)

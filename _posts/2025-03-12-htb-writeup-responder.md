@@ -10,6 +10,7 @@ header:
   icon: /img2/images/hackthebox.webp
 categories:
   - hackthebox
+  - Windows
   - Very Easy
 tags:
   - LLMNR/NBT-NS poisoning
