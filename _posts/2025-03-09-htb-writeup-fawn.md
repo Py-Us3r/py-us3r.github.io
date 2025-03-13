@@ -2,7 +2,7 @@
 layout: single
 title: Fawn - Hack The Box
 excerpt: "In this machine we are taking advantage of ftp anonymous login."
-date: 2025-03-12
+date: 2025-03-09
 classes: wide
 header:
   teaser: /img2/fawn.png

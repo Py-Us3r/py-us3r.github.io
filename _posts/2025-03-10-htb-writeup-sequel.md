@@ -2,7 +2,7 @@
 layout: single
 title: Sequel - Hack The Box
 excerpt: "In this machine we are taking advantage of misconfigured MariaDB server credentials."
-date: 2025-03-12
+date: 2025-03-10
 classes: wide
 header:
   teaser: /img2/sequel.png

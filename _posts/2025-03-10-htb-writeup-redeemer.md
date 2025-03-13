@@ -2,7 +2,7 @@
 layout: single
 title: Redeemer - Hack The Box
 excerpt: "In this machine, we are exploiting a misconfigured Redis service that has no credentials."
-date: 2025-03-12
+date: 2025-03-10
 classes: wide
 header:
   teaser: /img2/redeemer.png

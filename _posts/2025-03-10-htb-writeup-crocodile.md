@@ -2,7 +2,7 @@
 layout: single
 title: Crocodile - Hack The Box
 excerpt: "In this machine, we are taking advantage of FTP anonymous login and exploiting the login anel with Hydra."
-date: 2025-03-12
+date: 2025-03-10
 classes: wide
 header:
   teaser: /img2/crocodile.png

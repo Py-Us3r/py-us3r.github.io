@@ -2,7 +2,7 @@
 layout: single
 title: Meow - Hack The Box
 excerpt: "In this machine, we are taking advantage of a misconfigured Telnet service using blank password."
-date: 2025-03-12
+date: 2025-03-09
 classes: wide
 header:
   teaser: /img2/meow.png

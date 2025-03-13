@@ -2,7 +2,7 @@
 layout: single
 title: Appointment - Hack The Box
 excerpt: "In this machine, we are exploiting an SQL Injection in the login panel."
-date: 2025-03-12
+date: 2025-03-10
 classes: wide
 header:
   teaser: /img2/appointment.png

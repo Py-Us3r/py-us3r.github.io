@@ -2,7 +2,7 @@
 layout: single
 title: Dancing - Hack The Box
 excerpt: "In this machine we are taking advantage of resource sharing misconfiguration in SMB service."
-date: 2025-03-12
+date: 2025-03-09
 classes: wide
 header:
   teaser: /img2/dancing.png
