@@ -2,7 +2,14 @@
 
 {% include seo.html %}
 
-<link rel="icon" type="image/png" sizes="32x32" href="/img2/images/Dashboard.jpeg">
+.favicon {
+  border-radius: 50%; /* Hace que la imagen sea circular */
+  width: 32px; /* Ajusta el tamaño */
+  height: 32px;
+  object-fit: cover; /* Evita que se deforme */
+}
+
+<link rel="icon" type="image/png" sizes="32x32" href="/img2/images/Dashboard.jpeg" class="favicon">
 
 <link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | relative_url }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">
 
