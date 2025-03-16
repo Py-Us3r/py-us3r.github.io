@@ -5,7 +5,7 @@ excerpt: "Python TCP Port Scanner."
 date: 2025-03-16
 classes: wide
 header:
-  teaser: /img2/images/Dashboard.jpeg
+  teaser: /img2/images/python.jpeg"
   teaser_home_page: true
   icon: /img2/python.ico
 categories:
