@@ -50,6 +50,7 @@ tags:
 31. [[#Borrar interfaz de red]]
 32. [[#Establecer interfaz creada en el contenedor]]
 33. [[#Crear contenedor con la interfaz creada]]
+
 ----------------
 ## Crear Dockerfile básico 
 ```dockerfile
