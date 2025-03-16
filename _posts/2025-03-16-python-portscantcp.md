@@ -1,7 +1,7 @@
 ---
 layout: single
 title: TCP Port Scanner - Python
-excerpt: "Python TCP Port Scanner."
+excerpt: "Python TCP Port Scanner Script."
 date: 2025-03-16
 classes: wide
 header:

@@ -1,7 +1,7 @@
 ---
 layout: single
 title: ICMP Port Scanner - Python
-excerpt: "Python ICMP Port Scanner."
+excerpt: "Python ICMP Port Scanner Script."
 date: 2025-03-16
 classes: wide
 header:
