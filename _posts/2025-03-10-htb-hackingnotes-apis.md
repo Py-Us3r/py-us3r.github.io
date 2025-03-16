@@ -24,6 +24,7 @@ tags:
 4. [[#Explotación de un endpoint con fuerza bruta]]
 5. [[#Explotación de un endpoint cambiando el método]]
 6. [[#SQLi y NoSQLi en APIs]]
+
 ------------
 
 ## Identificación de API
