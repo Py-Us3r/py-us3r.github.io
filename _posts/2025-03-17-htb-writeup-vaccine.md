@@ -88,14 +88,18 @@ WHERE name ILIKE '%Elixir%'
 8. Check database version
 ![](/img2/Pasted%20image%2020250317141209.png)
 
+
 9. Check all tables
 ![](/img2/Pasted%20image%2020250317173458.png)
+
 
 10.  Check all columns
 ![](/img2/Pasted%20image%2020250317173639.png)
 
+
 11.  Check username and md5password of pg_shadow
 ![](/img2/Pasted%20image%2020250317173803.png)
+
 
 12.  Python script to crack md5 password
 
