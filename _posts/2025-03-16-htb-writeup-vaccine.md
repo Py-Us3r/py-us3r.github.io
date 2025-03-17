@@ -13,7 +13,7 @@ categories:
   - Linux
   - Very Easy
 tags:
-  - FTP misconfiguration
+  - FTP
   - SQL Injection
   - Sudoers
 ---
