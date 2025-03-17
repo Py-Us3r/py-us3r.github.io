@@ -76,27 +76,29 @@ john -w=/usr/share/wordlists/rockyou.txt --format=raw-md5 md5.txt
 ![](/img2/Pasted%20image%2020250317134333.png)
 
 6. Check table columns
+
 ![](/img2/Pasted%20image%2020250317134457.png)
 
-7. Create fake query
+1. Create fake query
 ```sql
 SELECT * FROM cars 
 WHERE name ILIKE '%Elixir%'
 ```
 
-8. Check database version
+1. Check database version
 ![](/img2/Pasted%20image%2020250317141209.png)
 
-9. Check all tables
+1. Check all tables
 ![](/img2/Pasted%20image%2020250317173458.png)
 
-10. Check all columns
+1.  Check all columns
 ![](/img2/Pasted%20image%2020250317173639.png)
 
-11. Check username and md5password of pg_shadow
+1.  Check username and md5password of pg_shadow
 ![](/img2/Pasted%20image%2020250317173803.png)
 
-12. Python script to crack md5 password
+1.  Python script to crack md5 password
+
 ```python
 #!/usr/bin/env python3
 import subprocess
@@ -150,6 +152,7 @@ if __name__ == '__main__':
 ```bash
 python3 md5postgresql.py -ha md52d58e0637ec1e94cdfba3d1c26b67d01 -w /usr/share/wordlists/rockyou.txt -u postgres
 ```
+
 ![](/img2/Pasted%20image%2020250317174018.png)
 
 ## Post-exploitation
