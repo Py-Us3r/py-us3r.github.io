@@ -17,34 +17,43 @@ tags:
 ---
 
 ![](/img2/Pasted%20image%2020250309174721.png)
+
 ## Introduction
 
 > In this machine we are taking advantage of resource sharing misconfiguration in SMB service. 
 
 ## Reconnaissance
 
-1. Connectivity
+- Connectivity
+
 ```bash
 ping -c1 10.129.77.89
 ```
 
-2. Nmap
+- Nmap
+
 ```bash
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.77.89
 ```
+
 ![](/img2/Pasted%20image%2020250309172957.png)
 
-3. See available sources with smbclient
+- See available sources with smbclient
+
 ```bash
 smbclient -L 10.129.77.89 -N
 ```
+
 ![](/img2/Pasted%20image%2020250309173756.png)
+
 ## Exploitation
 
 ```bash
 smbclient //10.129.77.89/WorkShares -N
 ```
+
 ![](/img2/Pasted%20image%2020250309173908.png)
+
 ## Task
 
 1. What does the 3-letter acronym SMB stand for?

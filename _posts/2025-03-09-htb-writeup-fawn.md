@@ -17,27 +17,33 @@ tags:
 ---
 
 ![](/img2/Pasted%20image%2020250309163746.png)
+
 ## Introduction
 
 > In this machine we are taking advantage of ftp anonymous login.
 
 ## Reconnaissance
 
-1. Connectivity 
+- Connectivity 
+
 ```bash
 ping -c1 10.129.245.175
 ```
 
-2. Nmap 
+- Nmap 
+
 ```bash
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.245.175
 ```
+
 ![](/img2/Pasted%20image%2020250309164010.png)
 
-3. Vulnerability scanning with nmap
+1. Vulnerability scanning with nmap
+
 ```bash
 nmap -sV -sC -p21 10.129.245.175
 ```
+
 ![](/img2/Pasted%20image%2020250309164400.png)
 
 ## Exploitation
@@ -45,6 +51,7 @@ nmap -sV -sC -p21 10.129.245.175
 ```bash
 ftp 10.129.245.175
 ```
+
 ![](/img2/Pasted%20image%2020250309164650.png)
 > Password --> anonymous
 

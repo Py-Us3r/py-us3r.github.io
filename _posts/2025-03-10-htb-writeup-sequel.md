@@ -18,35 +18,43 @@ tags:
 
 
 ![](/img2/Pasted%20image%2020250310111555.png)
+
 ## Introduction
 
 > In this machine we are taking advantage of misconfigured MariaDB server credentials.
 
 ## Reconnaissance
 
-1. Connectivity
+- Connectivity
+
 ```bash
 ping -c1 10.129.235.41
 ```
 
-2. Nmap
+- Nmap
+
 ```bash
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.235.41
 ```
+
 ![](/img2/Pasted%20image%2020250310112055.png)
 
-3.  Check MySQL version with nmap
+- Check MySQL version with nmap
+
 ```bash
 nmap -sV -sC -p3306 10.129.235.41
 ```
+
 ![](/img2/Pasted%20image%2020250310112600.png)
 
 ## Exploitation
 
 ```bash
 mysql -h 10.129.235.41 -u root --ssl=OFF
+
 ```
 ![](/img2/Pasted%20image%2020250310114129.png)
+
 ## Tasks
 
 1. During our scan, which port do we find serving MySQL

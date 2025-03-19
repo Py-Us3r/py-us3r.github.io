@@ -24,21 +24,26 @@ tags:
 
 ## Reconnaissance
 
-1. Connectivity
+- Connectivity
+
 ```bash
 ping -c1 10.129.147.154
 ```
 
-2. Nmap
+- Nmap
+
 ```bash
 nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.147.154
 ```
+
 ![](/img2/Pasted%20image%2020250309155856.png)
+
 ## Exploitation
 
 ```bash
 telnet 10.129.147.154
 ```
+
 ![](/img2/Pasted%20image%2020250309161642.png)
 
 > Login root with blank password
