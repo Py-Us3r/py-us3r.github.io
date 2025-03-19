@@ -121,20 +121,20 @@ ps aux
 mongo --port 27117
 ```
 
-```MongoDB
+```bash
 show dbs
 ```
 
 ![](/img2/Pasted%20image%2020250318231102.png)
 
-```MongoDB
+```bash
 use ace
 show collections
 ```
 
 ![](/img2/Pasted%20image%2020250318231303.png)
 
-```MongoSQL
+```bash
 db.admin.find().forEach(printjson)
 ```
 
@@ -148,7 +148,7 @@ mkpasswd -m sha-512 pass
 
 - Change administrator password 
 
-```MongoDB
+```bash
 db.admin.update({"_id":ObjectId("61ce278f46e0fb0012d47ee4")},{$set:{"x_shadow":"$6$6bm13IhH/uh7JzE.$BDesurCeAnw.uSQMDgVa6fGVK/G9w1WrOIkPPInm3eY86pkXJmts.aEpU6S5k34/ubTXZAq.pe4rXgTNPNlJc1"}})
 ```
 
