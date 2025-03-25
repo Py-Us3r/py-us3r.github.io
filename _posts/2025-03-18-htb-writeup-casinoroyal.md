@@ -8,7 +8,7 @@ header:
   teaser: /img2/casinoroyal.png
   teaser_home_page: true
   icon: /img2/vulnhub.png
-  - vulnhub
+  - hackthebox
   - Linux
   - Very Easy
 tags:
