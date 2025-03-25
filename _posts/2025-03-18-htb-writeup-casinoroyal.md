@@ -11,7 +11,7 @@ header:
 categories:
   - vulnhub
   - Linux
-  - Intermediate
+  - Medium
 tags:
   - Insecure Cookie Handling
   - SQL Injection
