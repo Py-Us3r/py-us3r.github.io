@@ -7,7 +7,7 @@ classes: wide
 header:
   teaser: /img2/casinoroyal.png
   teaser_home_page: true
-  icon: /img2/images/vulnhub.png
+  icon: /img2/vulnhub.png
   - vulnhub
   - Linux
   - Very Easy
