@@ -407,7 +407,7 @@ python3 -m http.server 80
 
 - Find leaked data 
 
-![](/Img2/Pasted%20image%2020250323200051.png)
+![](/img2/Pasted%20image%2020250323200051.png)
 
 - FInd XXE Out-of-Band (OOB)
 
