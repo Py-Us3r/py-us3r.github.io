@@ -57,7 +57,7 @@ ssh nathan@10.10.10.245
 getcap -r / 2>/dev/null
 ```
 
-![[Pasted image 20250510164146.png]]
+![](/img2/Pasted%20image%2020250510164146.png)
 
 - Python3.8 CAP_SETUID
 
