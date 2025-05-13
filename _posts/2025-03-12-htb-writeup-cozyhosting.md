@@ -5,7 +5,7 @@ excerpt: "CozyHosting is an easy-difficulty Linux machine that features a `Sprin
 date: 2025-05-12
 classes: wide
 header:
-  teaser: /img2/cozyhosting.png
+  teaser: /img2/cozyhosting.PNG
   teaser_home_page: true
   icon: /img2/images/hackthebox.webp
 categories:

@@ -5,7 +5,7 @@ excerpt: "Delivery is an easy difficulty Linux machine that features the support
 date: 2025-05-12
 classes: wide
 header:
-  teaser: /img2/delivery.png
+  teaser: /img2/delivery.PNG
   teaser_home_page: true
   icon: /img2/images/hackthebox.webp
 categories:
