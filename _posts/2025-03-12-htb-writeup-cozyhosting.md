@@ -1,7 +1,7 @@
 ---
 layout: single
 title: CozyHosting - Hack The Box
-excerpt: "CozyHosting is an easy-difficulty Linux machine that features a `Spring Boot` application. The application has the `Actuator` endpoint enabled. Enumerating the endpoint leads to the discovery of a user&amp;#039;s session cookie, leading to authenticated access to the main dashboard. The application is vulnerable to command injection, which is leveraged to gain a reverse shell on the remote machine. Enumerating the application&amp;#039;s `JAR` file, hardcoded credentials are discovered and used to log into the local database. The database contains a hashed password, which once cracked is used to log into the machine as the user `josh`. The user is allowed to run `ssh` as `root`, which is leveraged to fully escalate privileges."
+excerpt: "CozyHosting is an easy-difficulty Linux machine that features a 'Spring Boot' application. The application has the 'Actuator' endpoint enabled. Enumerating the endpoint leads to the discovery of a user&amp;#039;s session cookie, leading to authenticated access to the main dashboard. The application is vulnerable to command injection, which is leveraged to gain a reverse shell on the remote machine. Enumerating the application 'JAR' file, hardcoded credentials are discovered and used to log into the local database. The database contains a hashed password, which once cracked is used to log into the machine as the user 'josh'. The user is allowed to run 'ssh' as 'root', which is leveraged to fully escalate privileges."
 date: 2025-05-12
 classes: wide
 header:
