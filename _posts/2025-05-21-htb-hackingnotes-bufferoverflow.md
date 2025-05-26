@@ -2,7 +2,7 @@
 layout: single
 title: Buffer Overflow - Hacking Notes
 excerpt: "Apuntes de Buffer Overflow con un ejemplo práctico (Spanish)"
-date: 2025-03-21
+date: 2025-05-21
 classes: wide
 header:
   teaser: /img2/obsidian.jpg
