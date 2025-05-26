@@ -1,11 +1,11 @@
 ---
 layout: single
-title: Keeper - Hack The Box
-excerpt: "Keeper is an easy-difficulty Linux machine that features a support ticketing system that uses default credentials. Enumerating the service, we are able to see clear text credentials that lead to SSH access. With 'SSH' access, we can gain access to a KeePass database dump file, which we can leverage to retrieve the master password. With access to the 'Keepass' database, we can access the root 'SSH' keys, which are used to gain a privileged shell on the host."
+title: Knife - Hack The Box
+excerpt: "Knife is an easy difficulty Linux machine that features an application which is running on a backdoored version of PHP. This vulnerability is leveraged to obtain the foothold on the server. A sudo misconfiguration is then exploited to gain a root shell."
 date: 2025-05-26
 classes: wide
 header:
-  teaser: /img2/keeper.PNG
+  teaser: /img2/knife.png
   teaser_home_page: true
   icon: /img2/images/hackthebox.webp
 categories:
