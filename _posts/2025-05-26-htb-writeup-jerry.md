@@ -1,7 +1,7 @@
 ---
 layout: single
 title: Jerry - Hack The Box
-excerpt: "Jerry is an easy-difficulty Windows machine that showcases how to exploit Apache Tomcat, leading to an `NT Authority\SYSTEM` shell, thus fully compromising the target."
+excerpt: "Jerry is an easy-difficulty Windows machine that showcases how to exploit Apache Tomcat, leading to an 'NT Authority\\SYSTEM` shell, thus fully compromising the target."
 date: 2025-05-26
 classes: wide
 header:
