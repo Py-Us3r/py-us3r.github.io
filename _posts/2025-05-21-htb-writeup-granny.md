@@ -49,7 +49,7 @@ whatweb http://10.10.10.15/
 cadaver http://10.10.10.15
 ```
 
-```aspx
+```
 <%@ Page Language="C#" %>
 
 <%@ Import Namespace="System.Runtime.InteropServices" %>
