@@ -67,4 +67,4 @@ python3 exploit.py 10.10.10.4
 
 ![](/img2/Pasted%20image%2020250527101438.png)
 
-![[Pasted image 20250527100911.png]]
+![](/img2/Pasted%20image%2020250527100911.png)
