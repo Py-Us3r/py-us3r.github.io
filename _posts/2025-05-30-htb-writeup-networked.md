@@ -61,7 +61,7 @@ gobuster dir -u http://10.10.10.146/ -w /usr/share/seclists/Discovery/Web-Conten
 
 ![](/img2/Pasted%20image%2020250530105348.png)
 
-![[Pasted image 20250531134313.png]]
+![](/img2/Pasted%20image%2020250531134313.png)
 
 > To bypass this restriction, the last extension need to be ".jpg, .png, .gif, .jpeg" so we can upload doble extension like "test.php.png".  
 
