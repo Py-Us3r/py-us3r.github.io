@@ -1,6 +1,6 @@
 ---
 layout: single
-title: PermX  - Hack The Box
+title: PermX - Hack The Box
 excerpt: "'PermX' is an Easy Difficulty Linux machine featuring a learning management system vulnerable to unrestricted file uploads via [CVE-2023-4220](https://nvd.nist.gov/vuln/detail/CVE-2023-4220). This vulnerability is leveraged to gain a foothold on the machine. Enumerating the machine reveals credentials that lead to SSH access. A 'sudo' misconfiguration is then exploited to gain a 'root' shell."
 date: 2025-06-02
 classes: wide

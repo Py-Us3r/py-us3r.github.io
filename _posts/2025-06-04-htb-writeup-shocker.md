@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Shocker  - Hack The Box
+title: Shocker - Hack The Box
 excerpt: "Shocker, while fairly simple overall, demonstrates the severity of the renowned Shellshock exploit, which affected millions of public-facing servers."
 date: 2025-06-04
 classes: wide

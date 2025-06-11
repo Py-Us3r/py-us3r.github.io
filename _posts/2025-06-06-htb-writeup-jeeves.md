@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Jeeves  - Hack The Box
+title: Jeeves - Hack The Box
 excerpt: "Jeeves is not overly complicated, however it focuses on some interesting techniques and provides a great learning experience. As the use of alternate data streams is not very common, some users may have a hard time locating the correct escalation path."
 date: 2025-06-06
 classes: wide

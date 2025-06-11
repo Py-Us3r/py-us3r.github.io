@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Pilgrimage  - Hack The Box
+title: Pilgrimage - Hack The Box
 excerpt: "Pilgrimage is an easy-difficulty Linux machine featuring a web application with an exposed 'Git' repository. Analysing the underlying filesystem and source code reveals the use of a vulnerable version of 'ImageMagick', which can be used to read arbitrary files on the target by embedding a malicious 'tEXT' chunk into a PNG image. The vulnerability is leveraged to obtain a 'SQLite' database file containing a plaintext password that can be used to SSH into the machine. Enumeration of the running processes reveals a 'Bash' script executed by 'root' that calls a vulnerable version of the 'Binwalk' binary. By creating another malicious PNG, 'CVE-2022-4510' is leveraged to obtain Remote Code Execution (RCE) as 'root'."
 date: 2025-06-02
 classes: wide

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: SolidState  - Hack The Box
+title: SolidState - Hack The Box
 excerpt: "SolidState is a medium difficulty machine that requires chaining of multiple attack vectors in order to get a privileged shell. As a note, in some cases the exploit may fail to trigger more than once and a machine reset is required."
 date: 2025-06-05
 classes: wide

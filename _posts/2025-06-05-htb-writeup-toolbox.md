@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Toolbox  - Hack The Box
+title: Toolbox - Hack The Box
 excerpt: "Toolbox is an easy difficulty Windows machine that features a Docker Toolbox installation. Docker Toolbox is used to host a Linux container, which serves a site that is found vulnerable to SQL injection. This is leveraged to gain a foothold on the Docker container. Docker Toolbox default credentials and host file system access are leveraged to gain a privileged shell on the host."
 date: 2025-06-05
 classes: wide

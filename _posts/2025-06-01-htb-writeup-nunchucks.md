@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Nunchucks  - Hack The Box
+title: Nunchucks - Hack The Box
 excerpt: "Nunchucks is a easy machine that explores a NodeJS-based Server Side Template Injection (SSTI) leading to an AppArmor bug which disregards the binary AppArmor profile while executing scripts that include the shebang of the profiled application."
 date: 2025-06-01
 classes: wide
