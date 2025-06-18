@@ -11,7 +11,7 @@ header:
 categories:
   - hackthebox
   - Linux
-  - Easy
+  - Medium
 tags:
   - LFI (Local File Inclusion) - Filter Bypass
   - Obtaining a user's SSH private key through the LFI

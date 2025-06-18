@@ -11,7 +11,7 @@ header:
 categories:
   - hackthebox
   - Linux
-  - Easy
+  - Medium
 tags:
   - APK Analysis (apktool)
   - Information Leakage

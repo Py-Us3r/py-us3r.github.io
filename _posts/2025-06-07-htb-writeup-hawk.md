@@ -11,7 +11,7 @@ header:
 categories:
   - hackthebox
   - Linux
-  - Easy
+  - Medium
 tags:
   - OpenSSL Cipher Brute Force and Decryption
   - Drupal Enumeration/Exploitation

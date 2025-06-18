@@ -11,7 +11,7 @@ header:
 categories:
   - hackthebox
   - Windows
-  - Easy
+  - Medium
 tags:
   - Jenkins Exploitation (Groovy Script Console)
   - JuicyPotato (SeImpersonatePrivilege)
