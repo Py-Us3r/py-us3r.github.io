@@ -2,7 +2,7 @@
 layout: single
 title: Compiled - Hack The Box
 excerpt: "Compiled is a medium-difficulty Windows machine featuring a Gitea instance and a web application that clones Git repository URLs on the backend. The server's Git version is vulnerable to [CVE-2024-32002](https://nvd.nist.gov/vuln/detail/CVE-2024-32002), which can be exploited to gain initial access with a Git Bash shell as Richard. By cracking the password hash retrieved from the Gitea database file, the password for user Emily can be obtained. Privilege escalation to Administrator is achieved by exploiting [CVE-2024-20656](https://nvd.nist.gov/vuln/detail/CVE-2024-20656), a vulnerability in the Visual Studio Code version installed on the server."
-date: 2025-06-13
+date: 2025-06-18
 classes: wide
 header:
   teaser: /img2/compiled.png
