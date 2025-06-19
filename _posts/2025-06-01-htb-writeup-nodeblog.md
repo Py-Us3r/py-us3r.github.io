@@ -241,7 +241,7 @@ nc -nlvp 9000
 
 ## Post-exploitation (OPTION 1)
 
-- Find sudoers
+- Find SUID
 
 ```bash
 find / -perm -4000 2>/dev/null 

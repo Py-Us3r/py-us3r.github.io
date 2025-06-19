@@ -266,7 +266,7 @@ www-data@hawk:/var/www/html$
 
 ## Post-exploitation (OPTION 1)
 
-- Find sudoers
+- Find SUID
 
 ```bash
 www-data@hawk:/tmp$ find / -perm -4000 2>/dev/null | grep -v snap

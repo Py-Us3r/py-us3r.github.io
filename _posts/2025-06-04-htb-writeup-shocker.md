@@ -165,7 +165,7 @@ shelly
 
 ## Post-exploitation (OPTION 1)
 
-- Find sudoers
+- Find SUID
 
 ```bash
 shelly@Shocker:/tmp$ find / -perm -4000 2>/dev/null
