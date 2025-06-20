@@ -1,11 +1,11 @@
 ---
 layout: single
-title: Union - Hack The Box
+title: Strutted - Hack The Box
 excerpt: "'Strutted' is an medium-difficulty Linux machine featuring a website for a company offering image hosting solutions. The website provides a Docker container with the version of Apache Struts that is vulnerable to '[CVE-2024-53677](https://nvd.nist.gov/vuln/detail/CVE-2024-53677)', which is leveraged to gain a foothold on the system. Further enumeration reveals the 'tomcat-users.xml' file with a plaintext password used to authenticate as 'james'. For privilege escalation, we abuse 'tcpdump' while being used with 'sudo' to create a copy of the 'bash' binary with the 'SUID' bit set, allowing us to gain a 'root' shell."
 date: 2025-06-19
 classes: wide
 header:
-  teaser: /img2/union.png
+  teaser: /img2/strutted.png
   teaser_home_page: true
   icon: /img2/images/hackthebox.webp
 categories:
