@@ -5,7 +5,7 @@ excerpt: "All SQL Injection labs of PortSwigger with additional CheetSheet."
 date: 2025-07-10
 classes: wide
 header:
-  teaser: /img2/images/portswigger.jpg
+  teaser: /img2/images/portswigger.png
   teaser_home_page: true
   icon: /img2/images/burp.jpg
 categories:
