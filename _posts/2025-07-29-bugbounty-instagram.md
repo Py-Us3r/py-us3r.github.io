@@ -1,13 +1,13 @@
 ---
 layout: single
-title: Instagram - Denial of Service via Unbounded max_number_to_display Parameter AYML API
+title: Instagram - DoS via Unbounded max_number_to_display Parameter AYML API
 excerpt: "Denial of Service vulnerability in Instagram causing a specific message thread to become unusable. Out of scope for Meta’s bug bounty program due to available self-mitigation (e.g., deleting the thread)."
-date: 2025-07-30
+date: 2025-07-29
 classes: wide
 header:
-  teaser: /img2/images/hackerone.png
+  teaser: /img2/images/portswigger.png
   teaser_home_page: true
-  icon: /img2/images/hackeronelogo.jpeg
+  icon: /img2/images/burp.jpg
 categories:
   - Bug Bounty
   - Web
@@ -110,9 +110,16 @@ curl --path-as-is -i -s -k -X POST \
 
 ![](/img2/Pasted%20image%2020250726235839.png)
 
+- Video
+
+![](/img2/Curl%20Command%20Proof%20Of%20Concept.mp4)
 
 ## Proof of Concept BurpSuite
 
 ![](/img2/Pasted%20image%2020250729185334.png)
 
 ![](/img2/Pasted%20image%2020250729185456.png)
+
+- Video
+
+![](/img2/Burpsuite%20Proof%20Of%20Concept.mp4)
