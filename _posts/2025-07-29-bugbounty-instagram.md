@@ -7,7 +7,7 @@ classes: wide
 header:
   teaser: /img2/images/hackerone.png
   teaser_home_page: true
-  icon: /img2/images/hackeronelogo.jpg
+  icon: /img2/images/hackeronelogo.png
 categories:
   - Bug Bounty
   - Web
