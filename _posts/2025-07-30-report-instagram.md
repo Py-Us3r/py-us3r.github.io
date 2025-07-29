@@ -110,16 +110,9 @@ curl --path-as-is -i -s -k -X POST \
 
 ![](/img2/Pasted%20image%2020250726235839.png)
 
-- Video
-
-![](/img2/Curl%20Command%20Proof%20Of%20Concept.mp4)
 
 ## Proof of Concept BurpSuite
 
 ![](/img2/Pasted%20image%2020250729185334.png)
 
 ![](/img2/Pasted%20image%2020250729185456.png)
-
-- Video
-
-![](/img2/Burpsuite%20Proof%20Of%20Concept.mp4)
