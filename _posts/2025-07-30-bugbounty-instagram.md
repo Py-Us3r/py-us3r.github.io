@@ -2,7 +2,7 @@
 layout: single
 title: Instagram - DoS via Unbounded max_number_to_display Parameter AYML API
 excerpt: "Denial of Service vulnerability in Instagram causing a specific message thread to become unusable. Out of scope for Meta’s bug bounty program due to available self-mitigation (e.g., deleting the thread)."
-date: 2025-07-29
+date: 2025-07-30
 classes: wide
 header:
   teaser: /img2/images/hackerone.png
