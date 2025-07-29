@@ -58,12 +58,6 @@ https://portswigger.net/web-security/cross-site-scripting/cheat-sheet
 ${alert(1)}
 ```
 
-- AngularJS
-
-```javascript
-{{constructor.constructor('alert(1)')()}}
-```
-
 ### Special Functions
 
 ```html
