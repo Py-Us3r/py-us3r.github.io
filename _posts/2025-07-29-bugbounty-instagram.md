@@ -74,6 +74,6 @@ curl --path-as-is -i -s -k -X POST \
 
 ## Proof of Concept BurpSuite
 
-![](/img2/Pasted%20image%2020250729185334.png)
+![](/img2/Pasted%20image%20202507291853346.png)
 
 ![](/img2/Pasted%20image%2020250729185456.png)
