@@ -5,9 +5,9 @@ excerpt: "The challenge code performs unsafe YAML deserialization (yaml.load) on
 date: 2025-08-03
 classes: wide
 header:
-  teaser: /img2/images/ywh.png
+  teaser: /img2/images/portswigger.png
   teaser_home_page: true
-  icon: /img2/images/ywh_logo.png
+  icon: /img2/images/burp.jpg
 categories:
   - yeswehack
   - Web
@@ -42,7 +42,6 @@ import requests
 import random
 import time
 import json
-from bs4 import BeautifulSoup
 
 def genToken(seed:str) -> str:
     random.seed(seed)
