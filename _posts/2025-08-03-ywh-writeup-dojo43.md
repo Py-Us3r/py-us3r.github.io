@@ -120,6 +120,7 @@ python3 poc.py
 ![](/img2/Pasted%20image%2020250803231448.png)
 
  > To achieve RCE, it's necessary to send a request with the token bypass and the payload in the 'yaml' field.
+
 ## Flag
 
 ![](/img2/Pasted%20image%2020250803231544.png)
