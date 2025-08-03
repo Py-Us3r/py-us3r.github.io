@@ -1,13 +1,13 @@
 ---
 layout: single
 title: Remote Code Execution via Unsafe YAML Deserialization with Token Bypass - DOJO 43
-excerpt: "The challenge code performs unsafe YAML deserialization (yaml.load) on user-controlled input without proper validation or sandboxing, allowing remote code execution (RCE) via crafted payloads. A token-based access control is implemented comparing a guest token with a generated root token, but the check is flawed or bypassable, enabling an attacker to pass the authentication and reach the vulnerable YAML deserialization code. However, an attacker can bypass or control these tokens (e.g., via predictable token generation using the current time as seed), allowing access to the deserialization block where yaml.load is called with yaml.Loader. This allows arbitrary command execution via the !!python/object/apply:os.system YAML tag or similar techniques.
+excerpt: "The challenge code performs unsafe YAML deserialization (yaml.load) on user-controlled input without proper validation or sandboxing, allowing remote code execution (RCE) via crafted payloads. A token-based access control is implemented comparing a guest token with a generated root token, but the check is flawed or bypassable, enabling an attacker to pass the authentication and reach the vulnerable YAML deserialization code. However, an attacker can bypass or control these tokens (e.g., via predictable token generation using the current time as seed), allowing access to the deserialization block where yaml.load is called with yaml.Loader. This allows arbitrary command execution via the !!python/object/apply:os.system YAML tag or similar techniques."
 date: 2025-08-03
 classes: wide
 header:
-  teaser: /img2/images/portswigger.png
+  teaser: /img2/images/ywh.png
   teaser_home_page: true
-  icon: /img2/images/burp.jpg
+  icon: /img2/images/ywh_logo.png
 categories:
   - yeswehack
   - Web
@@ -120,7 +120,6 @@ python3 poc.py
 ![](/img2/Pasted%20image%2020250803231448.png)
 
  > To achieve RCE, it's necessary to send a request with the token bypass and the payload in the 'yaml' field.
-
 ## Flag
 
 ![](/img2/Pasted%20image%2020250803231544.png)
