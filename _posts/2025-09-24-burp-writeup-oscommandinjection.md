@@ -107,7 +107,7 @@ sh -c bash /home/peter-GPnOhF/stockreport.sh 1 1;whoami
 
 ![](/img2/Pasted%20image%2020250924185053.png)
 
-> Mediante el uso del operador $() de bash, hacemos una petición a nuestro domino con el output del comando whoami como subdominio.
+> By using the $() operator in Bash, we make a request to our domain using the output of the whoami command as a subdomain.
 
 - Injección
 
