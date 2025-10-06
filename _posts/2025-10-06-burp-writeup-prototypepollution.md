@@ -509,4 +509,4 @@ Object.defineProperty(Object.prototype, 'YOUR-PROPERTY', {
 
 ![](/img2/Pasted%20image%2020251006135615.png)
 
-![](/img2/Pasted%20image%2020251006135629.png)c
+![](/img2/Pasted%20image%2020251006135629.png)
