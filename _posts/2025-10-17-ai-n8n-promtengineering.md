@@ -5,7 +5,7 @@ excerpt: "Plantilla para crear promts en agentes de IA."
 date: 2025-10-17
 classes: wide
 header:
-  teaser: /img2/images/ai_agent.png
+  teaser: /img2/images/ai_agent_n8n.png
   teaser_home_page: true
   icon: /img2/images/n8n_logo.png
 categories:
