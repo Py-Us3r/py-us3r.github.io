@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Promt Engineering - AI
+title: Prompt Engineering - AI
 excerpt: "Plantilla para crear promts en agentes de IA."
 date: 2025-10-17
 classes: wide
