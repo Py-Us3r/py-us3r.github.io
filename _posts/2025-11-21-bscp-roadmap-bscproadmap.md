@@ -215,7 +215,7 @@ tags:
 - [ ] [Blind out-of-band data exfiltration](https://portswigger.net/web-security/os-command-injection/lab-blind-out-of-band-data-exfiltration)
 - [ ] [Blind output redirection](https://portswigger.net/web-security/os-command-injection/lab-blind-output-redirection)
 
-## Exam Tips
+# Exam Tips
 
 ![](/img2/Pasted%20image%2020251120103758.png)
 > This table shows which vulnerabilities are included in the exam.
